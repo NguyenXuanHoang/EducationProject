@@ -4,171 +4,412 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Đây là màn hình chọn 4 Ngành</title>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
+	<style type="text/css">
+.ui-g div {
+	background-color: #ededed;
+	text-align: center;
+	border: 1px solid #fafafa;
+}
+</style>
 </h:head>
 <h:body>
-đây là màn hình Chọn 4 Ngành
-<div>Chọn 4 Ngành</div>
-	<br />
-	<h:form id="form1">
-		<div>Nguyện vọng 1</div>
-		<div>Trường:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.schChose1}"
-			converter="#{schoolConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchMajor1()}"
-				render="form1" update="@form1" />
-			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
-				itemLabel="#{s.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Ngành:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.major1}"
-			converter="#{majorConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchSubject1()}"
-				render="form1" update="@form1" />
-			<f:selectItems value="#{major4Chose.majors1}" var="m"
-				itemLabel="#{m.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Tổ hợp môn:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.sub1}"
-			converter="#{subjectConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.choseSubject1()}"
-				render="form1" update="@form1" />
-			<f:selectItems value="#{major4Chose.grpSj1}" var="subj"
-				itemLabel="#{subj.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Điểm 3 môn:</div>
-		<h:outputText value="#{major4Chose.totalMark1}" />
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
 
-	</h:form>
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN
+						SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
+		</div>
 
-
-
-	<!-- Nguyện vọng 2 -->
-	<br />
-	<br />
-	<h:form id="form2">
-		<div>Nguyện vọng 2</div>
-		<div>Trường:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.schChose2}"
-			converter="#{schoolConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchMajor2()}"
-				render="form2" update="@form2" />
-			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
-				itemLabel="#{s.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Ngành:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.major2}"
-			converter="#{majorConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchSubject2()}"
-				render="form2" update="@form2" />
-			<f:selectItems value="#{major4Chose.majors2}" var="m"
-				itemLabel="#{m.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Tổ hợp môn:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.sub2}"
-			converter="#{subjectConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.choseSubject2()}"
-				render="form2" update="@form2" />
-			<f:selectItems value="#{major4Chose.grpSj2}" var="subj"
-				itemLabel="#{subj.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Điểm 3 môn:</div>
-		<h:outputText value="#{major4Chose.totalMark2}" />
-
-	</h:form>
-
-	<br />
-	<br />
-	<h:form id="form3">
-		<div>Nguyện vọng 3</div>
-		<div>Trường:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.schChose3}"
-			converter="#{schoolConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchMajor3()}"
-				render="form3" update="@form3" />
-			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
-				itemLabel="#{s.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Ngành:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.major3}"
-			converter="#{majorConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchSubject3()}"
-				render="form3" update="@form3" />
-			<f:selectItems value="#{major4Chose.majors3}" var="m"
-				itemLabel="#{m.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Tổ hợp môn:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.sub3}"
-			converter="#{subjectConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.choseSubject3()}"
-				render="form3" update="@form3" />
-			<f:selectItems value="#{major4Chose.grpSj3}" var="subj"
-				itemLabel="#{subj.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Điểm 3 môn:</div>
-		<h:outputText value="#{major4Chose.totalMark3}" />
-
-	</h:form>
-
-	<br />
-	<br />
-	<h:form id="form4">
-		<div>Nguyện vọng 4</div>
-		<div>Trường:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.schChose4}"
-			converter="#{schoolConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchMajor4()}"
-				render="form4" update="@form4" />
-			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
-				itemLabel="#{s.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Ngành:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.major4}"
-			converter="#{majorConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.searchSubject4()}"
-				render="form4" update="@form4" />
-			<f:selectItems value="#{major4Chose.majors4}" var="m"
-				itemLabel="#{m.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Tổ hợp môn:</div>
-		<h:selectOneListbox size="1" value="#{major4Chose.sub4}"
-			converter="#{subjectConverterBean}" effect="fade">
-			<f:ajax event="click" listener="#{major4Chose.choseSubject4()}"
-				render="form4" update="@form4" />
-			<f:selectItems value="#{major4Chose.grpSj4}" var="subj"
-				itemLabel="#{subj.toName()}" />
-		</h:selectOneListbox>
-		<br />
-		<div>Điểm 3 môn:</div>
-		<h:outputText value="#{major4Chose.totalMark4}" />
-
-	</h:form>
+		<div class="layout-sidebar">
+			<div class="nano">
+				<div class="nano-content menu-content">
+					<ul id="layout-menu" class="layout-menu">
+						<li id="submenu-ajax"><a href="/DuAnGiaoDuc/index.xhtml"><img
+								id="j_idt67"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/panel.svg.xhtml?ln=showcase"
+								alt="" /> <span>Trang Chủ</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/phieuDangKy.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/overlay.svg.xhtml?ln=showcase"
+								alt="" /> <span>Phiếu Đăng Ký</span> </a></li>
+						<li id="submenu-input"><a href="#"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/misc.svg.xhtml?ln=showcase"
+								alt="" /> <span>Tra Cứu</span> </a></li>
+						<li id="submenu-input"><a href="/DuAnGiaoDuc/dangKy.xhtml"><img
+								id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/ajaxCore.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đăng Ký Tuyển Sinh</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/doiMatKhau.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/ajaxCore.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đổi Mã Đăng Nhập</span> </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 
-	<h:form>
-		<br />
-		<h:commandButton action="#{major4Chose.turnBack()}" value="Quay lại" />
-		<br />
-		<h:commandButton action="#{major4Chose.submit()}" value="Tiếp"
-			update="@all" />
-		<br />
-		<h:commandButton action="#{navigationButton.cancelRegister()}"
-			value="Hủy đăng ký" />
-	</h:form>
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Chọn Ngành Muốn Đăng Ký</h1>
+				<p>Vì đã chọn nhóm trường nên thí sinh được chọn tối đa 4 nguyện
+					vọng. Mỗi trường thành viên thí sinh đăng ký không quá 2 ngành vào
+					trường mình đã chọn.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div style="font-size: 25px;">
+					<b>Trường đã chọn: #{major2Chose.schChose.toName()}</b>
+				</div>
+				<br />
+				<div>
+					<i><h:outputText value="#{schoolChose.student.studentName}" /></i>
+				</div>
+			</div>
+			<div class="content-section content-source">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-6" style="padding-right: 10px">
+							<p:panel>
+								<h:form id="form1">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 1</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Trường:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.schChose1}"
+												converter="#{schoolConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchMajor1()}" render="form1"
+													update="@form1" />
+												<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+													itemLabel="#{s.toName()}" />
+											</h:selectOneListbox>
 
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Ngành:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.major1}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchSubject1()}" render="form1"
+													update="@form1" />
+												<f:selectItems value="#{major4Chose.majors1}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổ hợp môn:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.sub1}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.choseSubject1()}" render="form1"
+													update="@form1" />
+												<f:selectItems value="#{major4Chose.grpSj1}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major4Chose.totalMark1}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
 
+						<div class="ui-grid-col-6" style="padding-left: 10px">
+							<p:panel>
+								<h:form id="form2">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 2</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Trường:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.schChose2}"
+												converter="#{schoolConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchMajor2()}" render="form2"
+													update="@form2" />
+												<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+													itemLabel="#{s.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Ngành:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.major2}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchSubject2()}" render="form2"
+													update="@form2" />
+												<f:selectItems value="#{major4Chose.majors2}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổ hợp môn:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.sub2}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.choseSubject2()}" render="form2"
+													update="@form2" />
+												<f:selectItems value="#{major4Chose.grpSj2}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major4Chose.totalMark2}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
+					</div>
+
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-6"
+							style="padding-right: 10px; padding-top: 20px;">
+							<p:panel style="background-color: Gainsboro">
+								<h:form id="form3">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 3</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Trường:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.schChose3}"
+												converter="#{schoolConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchMajor3()}" render="form3"
+													update="@form3" />
+												<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+													itemLabel="#{s.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Ngành:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.major3}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchSubject3()}" render="form3"
+													update="@form3" />
+												<f:selectItems value="#{major4Chose.majors3}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổ hợp môn:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.sub3}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.choseSubject3()}" render="form3"
+													update="@form3" />
+												<f:selectItems value="#{major4Chose.grpSj3}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major4Chose.totalMark3}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
+						<div class="ui-grid-col-6"
+							style="padding-left: 10px; padding-top: 20px;">
+							<p:panel style="background-color: Gainsboro">
+								<h:form id="form4">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 4</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Trường:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.schChose4}"
+												converter="#{schoolConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchMajor4()}" render="form4"
+													update="@form4" />
+												<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+													itemLabel="#{s.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Ngành:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.major4}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.searchSubject4()}" render="form4"
+													update="@form4" />
+												<f:selectItems value="#{major4Chose.majors4}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổ hợp môn:" />
+											<h:selectOneListbox size="1" value="#{major4Chose.sub4}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major4Chose.choseSubject4()}" render="form4"
+													update="@form4" />
+												<f:selectItems value="#{major4Chose.grpSj4}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major4Chose.totalMark4}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
+					</div>
+
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-8">
+
+							<h:form>
+								<div align="left">
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:commandButton value="Quay lại"
+											action="#{major4Chose.turnBack()}"
+											styleClass="ui-priority-primary" />
+										<p:commandButton value="Tiếp theo"
+											update="form1 form2 form3 form4"
+											action="#{major4Chose.submit()}"
+											styleClass="ui-priority-primary" />
+
+									</h:panelGrid>
+								</div>
+							</h:form>
+
+						</div>
+						<div class="ui-grid-col-4">
+							<h:form>
+								<div align="right">
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:commandButton value="Hủy đăng ký"
+											action="#{navigationButton.cancelRegister()}"
+											styleClass="ui-priority-primary" />
+									</h:panelGrid>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align" style="text-align: center;">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
 </h:body>
 </html>
