@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Đây là màn hình chọn 4 Ngành</title>
+</h:head>
+<h:body>
+đây là màn hình Chọn 4 Ngành
+<div>Chọn 4 Ngành</div>
+	<br />
+	<h:form id="form1">
+		<div>Nguyện vọng 1</div>
+		<div>Trường:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.schChose1}"
+			converter="#{schoolConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchMajor1()}"
+				render="form1" update="@form1" />
+			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+				itemLabel="#{s.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Ngành:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.major1}"
+			converter="#{majorConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchSubject1()}"
+				render="form1" update="@form1" />
+			<f:selectItems value="#{major4Chose.majors1}" var="m"
+				itemLabel="#{m.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Tổ hợp môn:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.sub1}"
+			converter="#{subjectConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.choseSubject1()}"
+				render="form1" update="@form1" />
+			<f:selectItems value="#{major4Chose.grpSj1}" var="subj"
+				itemLabel="#{subj.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Điểm 3 môn:</div>
+		<h:outputText value="#{major4Chose.totalMark1}" />
+
+	</h:form>
+
+
+
+	<!-- Nguyện vọng 2 -->
+	<br />
+	<br />
+	<h:form id="form2">
+		<div>Nguyện vọng 2</div>
+		<div>Trường:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.schChose2}"
+			converter="#{schoolConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchMajor2()}"
+				render="form2" update="@form2" />
+			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+				itemLabel="#{s.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Ngành:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.major2}"
+			converter="#{majorConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchSubject2()}"
+				render="form2" update="@form2" />
+			<f:selectItems value="#{major4Chose.majors2}" var="m"
+				itemLabel="#{m.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Tổ hợp môn:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.sub2}"
+			converter="#{subjectConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.choseSubject2()}"
+				render="form2" update="@form2" />
+			<f:selectItems value="#{major4Chose.grpSj2}" var="subj"
+				itemLabel="#{subj.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Điểm 3 môn:</div>
+		<h:outputText value="#{major4Chose.totalMark2}" />
+
+	</h:form>
+
+	<br />
+	<br />
+	<h:form id="form3">
+		<div>Nguyện vọng 3</div>
+		<div>Trường:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.schChose3}"
+			converter="#{schoolConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchMajor3()}"
+				render="form3" update="@form3" />
+			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+				itemLabel="#{s.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Ngành:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.major3}"
+			converter="#{majorConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchSubject3()}"
+				render="form3" update="@form3" />
+			<f:selectItems value="#{major4Chose.majors3}" var="m"
+				itemLabel="#{m.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Tổ hợp môn:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.sub3}"
+			converter="#{subjectConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.choseSubject3()}"
+				render="form3" update="@form3" />
+			<f:selectItems value="#{major4Chose.grpSj3}" var="subj"
+				itemLabel="#{subj.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Điểm 3 môn:</div>
+		<h:outputText value="#{major4Chose.totalMark3}" />
+
+	</h:form>
+
+	<br />
+	<br />
+	<h:form id="form4">
+		<div>Nguyện vọng 4</div>
+		<div>Trường:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.schChose4}"
+			converter="#{schoolConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchMajor4()}"
+				render="form4" update="@form4" />
+			<f:selectItems value="#{major4Chose.schoolsSelect}" var="s"
+				itemLabel="#{s.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Ngành:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.major4}"
+			converter="#{majorConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.searchSubject4()}"
+				render="form4" update="@form4" />
+			<f:selectItems value="#{major4Chose.majors4}" var="m"
+				itemLabel="#{m.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Tổ hợp môn:</div>
+		<h:selectOneListbox size="1" value="#{major4Chose.sub4}"
+			converter="#{subjectConverterBean}" effect="fade">
+			<f:ajax event="click" listener="#{major4Chose.choseSubject4()}"
+				render="form4" update="@form4" />
+			<f:selectItems value="#{major4Chose.grpSj4}" var="subj"
+				itemLabel="#{subj.toName()}" />
+		</h:selectOneListbox>
+		<br />
+		<div>Điểm 3 môn:</div>
+		<h:outputText value="#{major4Chose.totalMark4}" />
+
+	</h:form>
+
+
+	<h:form>
+		<br />
+		<h:commandButton action="#{major4Chose.turnBack()}" value="Quay lại" />
+		<br />
+		<h:commandButton action="#{major4Chose.submit()}" value="Tiếp"
+			update="@all" />
+		<br />
+		<h:commandButton action="#{navigationButton.cancelRegister()}"
+			value="Hủy đăng ký" />
+	</h:form>
+
+
+</h:body>
+</html>

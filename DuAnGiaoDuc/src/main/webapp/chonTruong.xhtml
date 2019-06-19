@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
+
+</h:head>
+<h:body>
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
+
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN
+						SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
+		</div>
+
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Chọn Trường Cần Đăng Ký</h1>
+				<p>Thí sinh vui lòng xem lại thông tin cá nhân và đọc kỹ hướng
+					dẫn trước khi thực hiện đăng ký. Nếu có bất kỳ thắc mắc gì xin vui
+					lòng liên hệ với chúng tôi theo các thông tin tại menu liên hệ.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div style="font-size: 20px;">
+					<b><h:outputText value="#{schoolChose.student.studentName}" /></b>
+				</div>
+				<br />
+				<div>
+					<i><h:outputText value="#{schoolChose.student.idNumber}" /></i>
+				</div>
+			</div>
+			<div class="content-section content-source">
+				<div
+					class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+					<h:form>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="chooseSchool" value="Nhập Trường Cần Tìm:" />
+							<h:inputText
+								class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+								id="chooseSchool" value="#{schoolChose.schoolName}" />
+						</h:panelGrid>
+						<div
+							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-priority-primary">
+							<h:commandButton action="#{schoolChose.search()}"
+								value="Tìm Kiếm" />
+						</div>
+					</h:form>
+				</div>
+				<br />
+
+				<div
+					class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+					<h:form>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="chooseSchool"
+								value="Chọn Trường Muốn Đăng Ký:" />
+							<h:selectOneListbox id="message" size="1"
+								value="#{schoolChose.sch}" converter="#{schoolConverterBean}">
+								<f:selectItems value="#{schoolChose.schools}" var="s"
+									itemLabel="#{s.toName()}" itemValue="#{s}" />
+							</h:selectOneListbox>
+							<br />
+
+						</h:panelGrid>
+						<div
+							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-priority-primary">
+							<h:commandButton action="#{schoolChose.choseMajor()}"
+								value="Tiếp Theo" />
+						</div>
+					</h:form>
+				</div>
+
+				<br />
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12">
+							<h:form>
+								<div align="right">
+									<h:panelGrid columns="1" cellpadding="5">
+										<p:commandButton value="Hủy đăng ký"
+											action="#{navigationButton.cancelRegister()}"
+											styleClass="ui-priority-primary" />
+									</h:panelGrid>
+								</div>
+							</h:form>
+						</div>
+
+					</div>
+
+				</div>
+
+				<br />
+			</div>
+		</div>
+
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align" style="text-align: center;">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="tuyensinh"
+		transaction-type="RESOURCE_LOCAL">
+		<class>vn.iomedia.ipay.entity.Student</class>
+		<class>vn.iomedia.ipay.entity.PriorityArea</class>
+		<class>vn.iomedia.ipay.entity.PriorityObject</class>
+		<class>vn.iomedia.ipay.entity.School</class>
+		<class>vn.iomedia.ipay.entity.GroupSchool</class>
+		<class>vn.iomedia.ipay.entity.OnlinePaymentDetail</class>
+		<class>vn.iomedia.ipay.entity.Examination</class>
+		<class>vn.iomedia.ipay.entity.Majors</class>
+		<class>vn.iomedia.ipay.entity.MajorGroupSubject</class>
+		<class>vn.iomedia.ipay.entity.GroupSubjects</class>
+		<class>vn.iomedia.ipay.entity.Mark</class>
+		<class>vn.iomedia.ipay.entity.RegistrationDetail</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<!-- Configuring JDBC Connection -->
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlserver://localhost:1433;databaseName=TuyenSinh;useUnicode=yes;characterEncoding=UTF-8" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password"
+				value="sa2012" />
+
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.c3p0.max_size" value="50" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+		</properties>
+	</persistence-unit>
+</persistence>

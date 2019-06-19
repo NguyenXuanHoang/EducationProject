@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Đây là màn hình Thanh Toán Bằng Card Điện thoại</title>
+</h:head>
+<h:body>
+	<div>Đây là màn hình Thanh Toán Bằng Card Điện thoại</div>
+	<h:form>
+		<div>Ten Sinh Vien:</div>
+		<h:outputText value="#{paymentByCard.student.studentName}" />
+		<br />
+
+		<div>Chọn nhà mạng :(*)</div>
+		<h:inputText value="#{paymentByCard.mobileCompany}" required="true" />
+		<br />
+		<div>Mã thẻ cào :(*)</div>
+		<h:inputText value="#{paymentByCard.codeMobile}" required="true" />
+		<br />
+		<div>Số seri :(*)</div>
+		<h:inputText value="#{paymentByCard.seriMobile}" required="true" />
+		<br />
+	</h:form>
+
+	<h:form>
+		<br />
+		<h:commandButton action="#{paymentByCard.turnBack()}"
+			value="Quay lại" />
+		<br />
+		<h:commandButton action="#{paymentByCard.submit()}" value="Tiếp" />
+		<br />
+		<h:commandButton action="#{navigationButton.cancelRegister()}"
+			value="Hủy đăng ký" />
+	</h:form>
+
+
+</h:body>
+</html>

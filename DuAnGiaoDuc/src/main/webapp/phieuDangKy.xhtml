@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Màn hình Phiếu Đăng Ký</title>
+</h:head>
+<h:body>
+đây là màn hình Phiếu Đăng Ký
+<h:form>
+		<h:commandButton style="width:200px;"
+			action="#{navigationButton.goHome()}" value="Trang Chủ" />
+		<br />
+		<h:commandButton style="width:200px;"
+			action="#{navigationButton.goRegisterLetter()}"
+			value="Phiếu Đăng Ký" />
+		<br />
+		<h:commandButton style="width:200px;"
+			action="#{navigationButton.goSearch()}" value="Tra Cứu" />
+		<br />
+		<h:commandButton style="width:200px;"
+			action="#{navigationButton.goRegisterAdmissions()}" value="Đăng Ký" />
+		<br />
+		<h:commandButton style="width:200px;"
+			action="#{navigationButton.goChangePass()}"
+			value="Đổi Mã Đăng Nhập" />
+		<br />
+	</h:form>
+
+	<!--This is student Information-->
+	<h:form>
+   Ten Sinh Vien: <h:outputText
+			value="#{registerLetter.student.studentName}" />
+		<br />  
+ CMND:<h:outputText value="#{registerLetter.student.idCard}" />
+		<br />
+ SBD:<h:outputText value="#{registerLetter.student.idNumber}" />
+		<br />
+ Ngày sinh:<h:outputText value="#{registerLetter.student.dob}" />
+		<br />	
+Điểm thi:<br />	
+Toán <h:outputText value="#{registerLetter.student.mark.math}" /> Văn <h:outputText
+			value="#{registerLetter.student.mark.literature}" /> Lý <h:outputText
+			value="#{registerLetter.student.mark.physical}" /> Hóa <h:outputText
+			value="#{registerLetter.student.mark.chemistry}" /> 
+Anh Văn <h:outputText value="#{registerLetter.student.mark.english}" />
+		<br />
+Khu vực ưu tiên 
+<br /> 
+Khu vực :  <h:outputText
+			value="#{registerLetter.student.priorityArea.codeArea}" />
+		<br />
+Đối tượng ưu tiên 
+<br />
+		<h:outputText
+			value="#{registerLetter.student.priorityObject.codeObject}" />
+	</h:form>
+
+	<!-- This is register of Student -->
+
+	<ul>
+		<ui:repeat value="#{registerLetter.listDetail}" var="detail"
+			rendered="#{not empty registerLetter.listDetail}">
+			<h:form>
+				<div>Nguyện vọng</div>
+				<div>Trường:</div>
+				<h:outputText value="#{detail.school.toName()}" />
+
+				<div>Ngành:</div>
+				<h:outputText value="#{detail.major.toName()}" />
+
+				<div>Tổ hợp môn:</div>
+				<h:outputText value="#{detail.groupSubjects.toName()}" />
+
+				<div>Điểm 3 môn:</div>
+				<h:outputText value="#{detail.totalMark}" />
+				<br />
+			</h:form>
+		</ui:repeat>
+	</ul>
+	<!-- Button Register  -->
+	<br />
+	<h:form>
+		<div>
+			Bạn còn
+			<h:outputText value="#{registerLetter.student.numberRegis}" />
+			lượt đăng ký
+		</div>
+		<h:commandButton action="#{registerLetter.choseRegis()}"
+			value="Đăng Ký">
+		</h:commandButton>
+	</h:form>
+	<br />
+</h:body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Đây là màn hình Xác nhận</title>
+</h:head>
+<h:body>
+	<div>đây là màn hình Xác nhận</div>
+	<br />
+	<div>Ten Sinh Vien:</div>
+	<h:outputText value="#{submit.student.studentName}" />
+	<br />
+	<ul>
+		<ui:repeat value="#{submit.listDetail}" var="detail"
+			rendered="#{not empty submit.listDetail}">
+			<h:form>
+				<div>Nguyện vọng</div>
+				<br />
+				<div>Trường:</div>
+				<h:outputText value="#{detail.school.toName()}" />
+
+				<div>Ngành:</div>
+				<h:outputText value="#{detail.major.toName()}" />
+
+				<div>Tổ hợp môn:</div>
+				<h:outputText value="#{detail.groupSubjects.toName()}" />
+
+				<div>Điểm 3 môn:</div>
+				<h:outputText value="#{detail.totalMark}" />
+				<br />
+			</h:form>
+		</ui:repeat>
+	</ul>
+	<br />
+
+	<h:form>
+		<div>Nhập mã xác thực</div>
+		<h:inputSecret value="#{submit.otpInput}" />
+		<br />
+		<br />
+		<h:commandButton action="#{submit.turnBack()}" value="Quay lại" />
+		<br />
+		<h:commandButton action="#{submit.submit()}" value="Tiếp" />
+		<br />
+		<h:commandButton action="#{navigationButton.cancelRegister()}"
+			value="Hủy đăng ký" />
+	</h:form>
+
+
+</h:body>
+</html>

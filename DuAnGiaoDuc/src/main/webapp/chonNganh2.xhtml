@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
+	<style type="text/css">
+.ui-g div {
+	background-color: #ededed;
+	text-align: center;
+	border: 1px solid #fafafa;
+}
+</style>
+</h:head>
+<h:body>
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
+
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
+		</div>
+
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Chọn Ngành Muốn Đăng Ký</h1>
+				<p>Vì đã chọn trường đơn lẻ nên thí sinh được chọn tối đa 2
+					nguyện vọng cho 2 ngành vào trường mình đã chọn đăng ký.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div style="font-size: 25px;">
+					<b>#{major2Chose.schChose.toName()}</b>
+				</div>
+				<br />
+				<div>
+					<i><h:outputText value="#{schoolChose.student.studentName}" /></i>
+				</div>
+			</div>
+			<div class="content-section content-source">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-6" style="padding-right: 10px">
+							<p:panel>
+								<h:form id="form1">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 1</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="chooseMajors" value="Chọn Ngành Đăng Ký:" />
+											<h:selectOneListbox size="1" value="#{major2Chose.major1}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major2Chose.searchSubject1()}" render="form1"
+													update="@form1" />
+												<f:selectItems value="#{major2Chose.majors1}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="chooseGroupSubject"
+												value="Chọn Tổ Hợp Môn:" />
+											<h:selectOneListbox size="1" value="#{major2Chose.sub1}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major2Chose.choseSubject1()}" render="form1"
+													update="@form1" />
+												<f:selectItems value="#{major2Chose.grpSj1}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major2Chose.totalMark1}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
+
+						<div class="ui-grid-col-6" style="padding-left: 10px">
+							<p:panel>
+								<h:form id="form2">
+									<div
+										style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+										<b><i>Nguyện vọng 2</i></b>
+									</div>
+									<hr />
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="chooseMajors" value="Chọn Ngành Đăng Ký:" />
+											<h:selectOneListbox size="1" value="#{major2Chose.major2}"
+												converter="#{majorConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major2Chose.searchSubject2()}" render="form2"
+													update="@form2" />
+												<f:selectItems value="#{major2Chose.majors2}" var="m"
+													itemLabel="#{m.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="chooseGroupSubject"
+												value="Chọn Tổ Hợp Môn:" />
+											<h:selectOneListbox size="1" value="#{major2Chose.sub2}"
+												converter="#{subjectConverterBean}" effect="fade">
+												<f:ajax event="click"
+													listener="#{major2Chose.choseSubject2()}" render="form2"
+													update="@form2" />
+												<f:selectItems value="#{major2Chose.grpSj2}" var="subj"
+													itemLabel="#{subj.toName()}" />
+											</h:selectOneListbox>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div
+										class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all">
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel value="Tổng điểm:" />
+											<h:outputText value="#{major2Chose.totalMark2}" />
+										</h:panelGrid>
+									</div>
+								</h:form>
+								<p:spacer height="20" />
+							</p:panel>
+						</div>
+
+					</div>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-8">
+
+							<h:form>
+								<div align="left">
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:commandButton value="Quay lại"
+											action="#{major2Chose.turnBack()}"
+											styleClass="ui-priority-primary" />
+										<p:commandButton value="Tiếp theo" update="@all"
+											action="#{major2Chose.submit()}"
+											styleClass="ui-priority-primary" />
+											
+									</h:panelGrid>
+								</div>
+							</h:form>
+
+						</div>
+						<div class="ui-grid-col-4">
+							<h:form>
+								<div align="right">
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:commandButton value="Hủy đăng ký"
+											action="#{navigationButton.cancelRegister()}"
+											styleClass="ui-priority-primary" />
+									</h:panelGrid>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align" style="text-align: center;">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
+</h:body>
+</html>

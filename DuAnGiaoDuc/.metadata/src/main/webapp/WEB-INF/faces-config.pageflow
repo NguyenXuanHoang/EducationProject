@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15602422013861" configfile="/DuAnGiaoDuc/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15602422243502" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15602422243513 pf15602422243514" inlinks="pf15602422243514 pf15602422243515" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dangKy.xhtml" id="pf15602422243516" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15602422243513" path="/dangKy.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" id="pf15602422243517" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15602422243515"/>
+  <links id="pf15602422243513" target="pf15602422243516" source="pf15602422243502" outcome="success" fromaction="#{login.checkValidate()}"/>
+  <links id="pf15602422243514" target="pf15602422243502" source="pf15602422243502" outcome="fail" fromaction="#{login.checkValidate()}"/>
+  <links id="pf15602422243515" target="pf15602422243502" source="pf15602422243517" outcome="success" fromaction="#{navigationButton.goHome()}"/>
+</pageflow:Pageflow>
