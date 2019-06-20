@@ -1,7 +1,5 @@
 package vn.iomedia.ipay.utils;
 
-import com.microsoft.sqlserver.jdbc.StringUtils;
-
 import vn.iomedia.ipay.entity.GroupSubjects;
 import vn.iomedia.ipay.entity.Majors;
 import vn.iomedia.ipay.entity.Student;
@@ -40,7 +38,7 @@ public class StringUtillStudy {
         total += getTotal(sub.getCodeSubject1(), student);
         total += getTotal(sub.getCodeSubject2(), student);
         total += getTotal(sub.getCodeSubject3(), student);
-        sb.append("Tổng :");
+        sb.append("Tong :");
         sb.append(total);
         sb.append("|");
         if (student.getPriorityArea() != null && student.getPriorityArea().getPriorityMark() > 0) {
@@ -50,11 +48,11 @@ public class StringUtillStudy {
             total_priority += student.getPriorityObject().getPriorityMark();
         }
         if (total_priority > 0) {
-            sb.append("Điểm ưu tiên :");
+            sb.append("Diem Uu Tien :");
             sb.append(total_priority);
             sb.append("|");
         }
-        sb.append("Điểm xét tuyển :");
+        sb.append("Diem Xet Tuyen :");
         sb.append(total + total_priority);
         return sb.toString();
     }

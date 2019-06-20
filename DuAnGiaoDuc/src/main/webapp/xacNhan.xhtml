@@ -16,9 +16,12 @@
 	<br />
 	<ul>
 		<ui:repeat value="#{submit.listDetail}" var="detail"
-			rendered="#{not empty submit.listDetail}">
+			rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
 			<h:form>
-				<div>Nguyện vọng</div>
+				<div>
+					Nguyện vọng
+					<h:outputText value="#{myVarStatus.index + 1}" />
+				</div>
 				<br />
 				<div>Trường:</div>
 				<h:outputText value="#{detail.school.toName()}" />
