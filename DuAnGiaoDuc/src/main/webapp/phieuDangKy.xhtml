@@ -63,9 +63,12 @@ Khu vực :  <h:outputText
 
 	<ul>
 		<ui:repeat value="#{registerLetter.listDetail}" var="detail"
-			rendered="#{not empty registerLetter.listDetail}">
+			rendered="#{not empty registerLetter.listDetail}" varStatus="myVarStatus">
 			<h:form>
-				<div>Nguyện vọng</div>
+				<div>
+					Nguyện vọng
+					<h:outputText value="#{myVarStatus.index + 1}" />
+				</div>
 				<div>Trường:</div>
 				<h:outputText value="#{detail.school.toName()}" />
 
