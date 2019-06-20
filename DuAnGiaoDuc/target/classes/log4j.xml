@@ -51,7 +51,7 @@
 		</filter>
 	</appender>
 
-	<logger name="com.ioMedia">
+	<logger name="vn.iomedia">
 		<level value="DEBUG" />
 		<appender-ref ref="INFO_FILE" />
 		<appender-ref ref="DEBUG_FILE" />
@@ -59,7 +59,7 @@
 	</logger>
 
 	<root>
-		<priority value="INFO" />
+		<priority value="DEBUG" />
 		<appender-ref ref="MyConsole" />
 	</root>
 
