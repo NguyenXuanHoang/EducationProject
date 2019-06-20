@@ -65,7 +65,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
         } catch (Exception exp) {
-            log.error(exp.getStackTrace());
+            log.error(exp.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class PaymentServiceImpl implements PaymentService {
             stu.setNumberRegis(stu.getNumberRegis() - 1);
             ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
         } catch (Exception exp) {
-            log.error(exp);
+            log.error(exp.getMessage());
         }
     }
 

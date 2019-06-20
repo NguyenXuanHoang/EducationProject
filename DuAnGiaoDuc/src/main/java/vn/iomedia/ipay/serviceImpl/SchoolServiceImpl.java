@@ -22,9 +22,10 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public List<School> searchListSchoolByName(String name) {
         if (StringUtils.isEmpty(name)) {
+            log.debug("if name = null,then get all list of school.");
             try {
                 @SuppressWarnings("unchecked")
-                List<School> schools = em.createQuery("select sch from School sch").getResultList();
+                List<School> schools = em.createQuery("SELECT sch FROM School sch").getResultList();
                 return schools;
             } catch (NoResultException e) {
                 log.error(e.getMessage());
@@ -32,13 +33,14 @@ public class SchoolServiceImpl implements SchoolService {
             } finally {
             }
         }
+        log.debug("if name not null,then search school by name");
         try {
             @SuppressWarnings("unchecked")
             List<School> schools = em
-                    .createQuery("select sch from School sch where sch.name LIKE CONCAT('%',:name,'%')")
+                    .createQuery("SELECT sch FROM School sch WHERE sch.name LIKE CONCAT('%',:name,'%')")
                     .setParameter("name", name).getResultList();
             return schools;
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         } finally {
@@ -49,7 +51,8 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public School getSchoolById(int id) {
         try {
-            School school = (School) em.createQuery("select sch from School sch where sch.id = :id")
+            log.debug("get school by Id.");
+            School school = (School) em.createQuery("SELECT sch FROM School sch WHERE sch.id = :id")
                     .setParameter("id", id).getSingleResult();
             return school;
         } catch (NoResultException e) {
@@ -64,7 +67,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public List<School> getSchoolsByGroupId(int groupId) {
         try {
-            List<School> schools = em.createQuery("select sch from School sch where sch.groupSchool.id = :id")
+            List<School> schools = em.createQuery("SELECT sch FROM School sch WHERE sch.groupSchool.id = :id")
                     .setParameter("id", groupId).getResultList();
             return schools;
         } catch (NoResultException e) {

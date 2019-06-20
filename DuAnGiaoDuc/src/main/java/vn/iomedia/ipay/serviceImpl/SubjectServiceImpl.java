@@ -18,11 +18,12 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public GroupSubjects getSubjectById(int id) {
         try {
+            log.debug("get Group Subject by shcool Id");
             GroupSubjects school = (GroupSubjects) em
-                    .createQuery("select sch from GroupSubjects sch where sch.id = :id").setParameter("id", id)
+                    .createQuery("SELECT sch FROM GroupSubjects sch WHERE sch.id = :id").setParameter("id", id)
                     .getSingleResult();
             return school;
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         } finally {

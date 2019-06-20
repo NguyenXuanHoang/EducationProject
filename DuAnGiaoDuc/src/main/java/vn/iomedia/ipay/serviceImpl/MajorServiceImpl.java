@@ -15,29 +15,28 @@ import vn.iomedia.ipay.service.MajorService;
 public class MajorServiceImpl implements MajorService {
 
     private Log log = LogFactory.getLog(MajorServiceImpl.class);
-
-    EntityManager em = SQLConnection.getConnection();
+    private EntityManager em = SQLConnection.getConnection();
 
     @Override
     public Majors getMajorById(int id) {
         try {
-            Majors major = (Majors) em.createQuery("select mj from Majors mj where mj.id = :id").setParameter("id", id)
+            log.debug("get Major by Id.");
+            Majors major = (Majors) em.createQuery("SELECT mj from Majors mj WHERE mj.id = :id").setParameter("id", id)
                     .getSingleResult();
             return major;
-        } catch (NoResultException e) {
-            log.error(e.getMessage());
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
             return null;
         } finally {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Majors> getListMajorBySchoolId(int schoolId) {
         try {
-            @SuppressWarnings("unchecked")
-            List<Majors> majors = em.createQuery("select m from Majors m where m.school.id = :school_fk")
-                    // .createQuery("select m from Majors m join School s on m.school = s where s.id
-                    // = :school_fk")
+            log.debug("Get list Major by School id.");
+            List<Majors> majors = em.createQuery("SELECT m from Majors m WHERE m.school.id = :school_fk")
                     .setParameter("school_fk", schoolId).getResultList();
             return majors;
         } catch (NoResultException e) {

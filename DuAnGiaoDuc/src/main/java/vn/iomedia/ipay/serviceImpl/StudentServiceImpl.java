@@ -19,6 +19,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void updatePass(Student student, String newPass) {
         try {
+            log.debug("update password Student.");
             em.getTransaction().begin();
             int id = em.createQuery("UPDATE Student SET password = :newPass WHERE id = :id")
                     .setParameter("newPass", newPass).setParameter("id", student.getId()).executeUpdate();
@@ -32,6 +33,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void updateNumberRegis(Student student, int number) {
         if (number >= 0) {
+            log.debug("if number Registration > 0,then continue update number Registration.");
             log.debug("numerRegis >= 0,update student");
             try {
                 em.getTransaction().begin();
