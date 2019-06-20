@@ -122,52 +122,56 @@
 						</div>
 					</ui:repeat>
 				</ul>
-				<div class="ui-grid ui-grid-responsive">
-					<div class="ui-grid-row">
-						<div class="ui-grid-col-12"
-							style="padding-left: 15px; padding-top: 15px; text-align: justify;">
-							<p:panel>
-								<p>
-									<i><span style="color: blue">Để xác nhận đăng ký xét
-											tuyển bạn vui lòng sử dụng đúng số điện thoại đã ghi trong
-											phiếu đăng ký dự thi và nhắn tin theo cú pháp <span
-											style="color: red">THIQG &lt;Số Báo Danh&gt; gửi 8088</span>
-											(500đ/tin nhắn) để nhận mã xác thực OTP. Sau khi nhắn tin bạn
-											vui lòng kiểm tra email đã đăng ký trong phiếu dự thi để nhận
-											mã xác thực OTP và nhập vào ô dưới đây:
-									</span></i>
-								</p>
-								<h:form>
+				<h:form>
+
+					<div class="ui-grid ui-grid-responsive">
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-12"
+								style="padding-left: 15px; padding-top: 15px; text-align: justify;">
+								<p:panel>
+									<p>
+										<i><span style="color: blue">Để xác nhận đăng ký
+												xét tuyển bạn vui lòng sử dụng đúng số điện thoại đã ghi
+												trong phiếu đăng ký dự thi và nhắn tin theo cú pháp <span
+												style="color: red">THIQG &lt;Số Báo Danh&gt; gửi 8088</span>
+												(500đ/tin nhắn) để nhận mã xác thực OTP. Sau khi nhắn tin
+												bạn vui lòng kiểm tra email đã đăng ký trong phiếu dự thi để
+												nhận mã xác thực OTP và nhập vào ô dưới đây:
+										</span></i>
+									</p>
+
 									<div align="center" class="ui-corner-all">
 										<b>Nhập mã xác thực: </b>
-										<h:inputSecret value="#{submit.otpInput}"
-											class="ui-inputfield ui-widget ui-state-default ui-corner-all" />
+										<h:inputSecret value="#{submit.otpInput}" />
+										<!-- class="ui-inputfield ui-widget ui-state-default ui-corner-all" /> -->
 									</div>
-								</h:form>
-							</p:panel>
+
+								</p:panel>
+							</div>
 						</div>
 					</div>
-				</div>
+				
 				<br />
 				<div align="center">
-					<h:form>
-						<h:panelGrid columns="2">
-							<h:panelGroup>
-								<h:panelGrid columns="2">
-									<p:commandButton value="Quay lại" action="#{submit.turnBack()}"
-										styleClass="ui-priority-primary" />
-									<p:commandButton value="Tiếp theo" action="#{submit.submit()}"
-										styleClass="ui-priority-primary" />
-								</h:panelGrid>
-							</h:panelGroup>
-							<h:panelGroup>
-								<p:commandButton value="Hủy đăng ký"
-									action="#{navigationButton.cancelRegister()}"
+
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<h:panelGrid columns="2">
+								<p:commandButton value="Quay lại" action="#{submit.turnBack()}"
 									styleClass="ui-priority-primary" />
-							</h:panelGroup>
-						</h:panelGrid>
-					</h:form>
+								<p:commandButton value="Tiếp theo" action="#{submit.submit()}"
+									styleClass="ui-priority-primary" />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:commandButton value="Hủy đăng ký"
+								action="#{navigationButton.cancelRegister()}"
+								styleClass="ui-priority-primary" />
+						</h:panelGroup>
+					</h:panelGrid>
+
 				</div>
+				</h:form>
 			</div>
 		</div>
 		<div class="ui-g-12 layout-footer">
