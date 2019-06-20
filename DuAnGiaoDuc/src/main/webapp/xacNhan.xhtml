@@ -64,7 +64,7 @@
 			<div class="content-section content-source">
 				<ul>
 					<ui:repeat value="#{submit.listDetail}" var="detail"
-						rendered="#{not empty submit.listDetail}">
+						rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-2"></div>
@@ -73,7 +73,8 @@
 										<h:form>
 											<div
 												style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
-												<b><i>Nguyện vọng</i></b>
+												<b><i> Nguyện vọng <h:outputText
+															value="#{myVarStatus.index + 1}" /></i></b>
 											</div>
 											<hr />
 											<br />
@@ -151,27 +152,27 @@
 							</div>
 						</div>
 					</div>
-				
-				<br />
-				<div align="center">
 
-					<h:panelGrid columns="2">
-						<h:panelGroup>
-							<h:panelGrid columns="2">
-								<p:commandButton value="Quay lại" action="#{submit.turnBack()}"
-									styleClass="ui-priority-primary" />
-								<p:commandButton value="Tiếp theo" action="#{submit.submit()}"
-									styleClass="ui-priority-primary" />
-							</h:panelGrid>
-						</h:panelGroup>
-						<h:panelGroup>
-							<p:commandButton value="Hủy đăng ký"
-								action="#{navigationButton.cancelRegister()}"
-								styleClass="ui-priority-primary" />
-						</h:panelGroup>
-					</h:panelGrid>
+					<br />
+					<div align="center">
 
-				</div>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<h:panelGrid columns="2">
+									<p:commandButton value="Quay lại" action="#{submit.turnBack()}"
+										styleClass="ui-priority-primary" />
+									<p:commandButton value="Tiếp theo" action="#{submit.submit()}"
+										styleClass="ui-priority-primary" />
+								</h:panelGrid>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:commandButton value="Hủy đăng ký"
+									action="#{navigationButton.cancelRegister()}"
+									styleClass="ui-priority-primary" />
+							</h:panelGroup>
+						</h:panelGrid>
+
+					</div>
 				</h:form>
 			</div>
 		</div>

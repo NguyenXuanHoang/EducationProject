@@ -62,7 +62,7 @@
 			<div class="content-section content-source">
 				<ul>
 					<ui:repeat value="#{submit.listDetail}" var="detail"
-						rendered="#{not empty submit.listDetail}">
+						rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-2"></div>
@@ -71,7 +71,8 @@
 										<h:form>
 											<div
 												style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
-												<b><i>Nguyện vọng</i></b>
+												<b><i> Nguyện vọng <h:outputText
+															value="#{myVarStatus.index + 1}" /></i></b>
 											</div>
 											<hr />
 											<br />
@@ -129,13 +130,12 @@
 								style="padding-left: 15px; padding-top: 15px; text-align: justify; background-color: goshtwhite">
 								<p:panel>
 									<div align="center">
-										<span style="blue"><b>Tổng tiền cần thanh toán: </b></span>
+										<span style=""><b>Tổng tiền cần thanh toán: </b></span>
 										<h:outputText style="color:red"
 											value="#{checkOut.moneyString}" />
 									</div>
 									<div align="center">
-										<b>Bạn vui lòng chọn hình thức để thanh toán:
-										</b>
+										<b>Bạn vui lòng chọn hình thức để thanh toán: </b>
 										<h:selectOneRadio value="#{checkOut.payment}"
 											unselectable="false">
 											<f:selectItem itemLabel="Thẻ Cào" itemValue="mobileCard" />
