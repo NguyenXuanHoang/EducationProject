@@ -1,57 +1,142 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Đây là màn hình đổi mật khẩu</title>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
 </h:head>
 <h:body>
-	<div>đây là màn hình Đổi Mật Khẩu</div>
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
 
-	<h:form>
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goHome()}" value="Trang Chủ" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goRegisterLetter()}"
-			value="Phiếu Đăng Ký" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goSearch()}" value="Tra Cứu" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goRegisterAdmissions()}" value="Đăng Ký" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goChangePass()}"
-			value="Đổi Mã Đăng Nhập" />
-		<br />
-	</h:form>
-	<br />
-	<br />
-	<h:form>
-		<div>
-			Mật khẩu cũ:
-			<h:inputSecret value="#{changePass.oldPass}" />
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN
+						SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
 		</div>
-		<br />
-		<div>
-			Mật khẩu mới:
-			<h:inputSecret value="#{changePass.newPass}" />
-		</div>
-		<br />
-		<div>
-			Xác nhận mật khẩu mới:
-			<h:inputSecret value="#{changePass.newPass2}" />
-		</div>
-		<br />
-		<br />
-		<h:commandButton action="#{changePass.submit()}" value="Tiếp" />
-		<br />
-	</h:form>
 
+		<div class="layout-sidebar">
+			<div class="nano">
+				<div class="nano-content menu-content">
+					<ul id="layout-menu" class="layout-menu">
+						<li id="submenu-ajax"><a href="/DuAnGiaoDuc/index.xhtml"><img
+								id="j_idt67"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/panel.svg.xhtml?ln=showcase"
+								alt="" /> <span>Trang Chủ</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/phieuDangKy.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/overlay.svg.xhtml?ln=showcase"
+								alt="" /> <span>Phiếu Đăng Ký</span> </a></li>
+						<li id="submenu-input"><a href="#"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/misc.svg.xhtml?ln=showcase"
+								alt="" /> <span>Tra Cứu</span> </a></li>
+						<li id="submenu-input"><a href="/DuAnGiaoDuc/dangKy.xhtml"><img
+								id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/ajaxCore.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đăng Ký Tuyển Sinh</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/doiMatKhau.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/ajaxCore.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đổi Mã Đăng Nhập</span> </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Đổi Mã Đăng Nhập</h1>
+				<p>Thí sinh vui lòng nhập mã đăng nhập đã được cung cấp để thay đổi mã đăng nhập.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div class="valign-wrapper" id="login-page">
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<img class="responsive-img" style="max-width: 250px;" src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"/>
+								<div class="left-align">
+									<h:form id="login-form">
+										<p:growl autoUpdate="true" />
+										<div class="row">
+											<div class="col s12 input-field">
+												<h:inputText id="oldPass" value="#{changePass.oldPass}" required="true" requiredMessage="Nhập mã xác nhận cũ." />
+												<h:outputLabel for="oldPass" value="Nhập mã đăng nhập cũ"/>
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="newPass" value="#{changePass.newPass}" required="true" requiredMessage="Vui lòng nhập mã xác nhận mới" />
+												<h:outputLabel for="newPass" value="Nhập mã đăng nhập mới"/>
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="confirm" value="#{changePass.newPass2}" required="true" requiredMessage="Nhập lại mã xác nhận mới" />
+												<h:outputLabel for="confirm" value="Nhập lại mã đăng nhập mới"/>
+											</div>
+											<div class="col s12 input-field">
+												<div class="center-align">
+													<h:commandLink value="Đổi mã đăng nhập" action="#{changePass.submit()}" styleClass="btn btn-large"/>
+												</div>
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+			</div>
+			<div class="content-section content-source">
+			</div>
+		</div>
+
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
+	<script>
+		$(document).on("ready", function(){
+				$('#login-page').css({'height': window.innerHeight + 'px'});	
+		});
+	</script>
 </h:body>
 </html>
