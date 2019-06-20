@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
@@ -46,8 +47,101 @@
 					xác nhận. Mọi thắc mắc xin liên hệ với chúng tôi theo địa chỉ tại
 					menu liên hệ.</p>
 			</div>
-			<div class="content-section content-implementation"></div>
-			<div class="content-section content-source"></div>
+			<div class="content-section content-implementation">
+				<div style="font-size: 20px;">
+					<p>
+						Thí Sinh: <b>#{submit.student.studentName}</b>
+					</p>
+				</div>
+				<div>
+					<p>
+						Số Báo Danh: <i><h:outputText
+								value="#{schoolChose.student.idNumber}" /></i>
+					</p>
+				</div>
+			</div>
+			<div class="content-section content-source">
+				<ul>
+					<ui:repeat value="#{submit.listDetail}" var="detail"
+						rendered="#{not empty submit.listDetail}">
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-6" style="padding: 10px">
+									<p:panel>
+										<h:form>
+											<div>Nguyện vọng</div>
+											<br />
+											<div>Trường:</div>
+											<h:outputText value="#{detail.school.toName()}" />
+
+											<div>Ngành:</div>
+											<h:outputText value="#{detail.major.toName()}" />
+
+											<div>Tổ hợp môn:</div>
+											<h:outputText value="#{detail.groupSubjects.toName()}" />
+
+											<div>Điểm 3 môn:</div>
+											<h:outputText value="#{detail.totalMark}" />
+											<br />
+										</h:form>
+									</p:panel>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</ul>
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12"
+							style="padding-left: 15px; padding-top: 15px; text-align: justify;">
+							<p:panel>
+								<p>
+									<i><span style="color: blue">Để xác nhận đăng ký xét
+											tuyển bạn vui lòng sử dụng đúng số điện thoại đã ghi trong
+											phiếu đăng ký dự thi và nhắn tin theo cú pháp <span
+											style="color: red">THIQG &lt;Số Báo Danh&gt; gửi 8088</span>
+											(500đ/tin nhắn) để nhận mã xác thực OTP. Sau khi nhắn tin bạn
+											vui lòng kiểm tra email đã đăng ký trong phiếu dự thi để nhận
+											mã xác thực OTP và nhập vào ô dưới đây:
+									</span></i>
+								</p>
+								<h:form>
+									<div align="center" class="ui-corner-all">
+										<b>Nhập mã xác thực: </b>
+										<h:inputSecret value="#{submit.otpInput}"
+											class="ui-inputfield ui-widget ui-state-default ui-corner-all" />
+									</div>
+								</h:form>
+							</p:panel>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h:form>
+						<div></div>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<div align="left">
+									<h:panelGrid columns="2" cellpadding="15">
+										<p:commandButton value="Quay lại"
+											action="#{submit.turnBack()}"
+											styleClass="ui-priority-primary" />
+										<p:commandButton value="Tiếp theo" action="#{submit.submit()}"
+											styleClass="ui-priority-primary" />
+									</h:panelGrid>
+								</div>
+							</h:panelGroup>
+							<h:panelGroup>
+								<div align="right">
+									<p:commandButton value="Hủy đăng ký"
+										action="#{navigationButton.cancelRegister()}"
+										styleClass="ui-priority-primary" />
+								</div>
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:form>
+				</div>
+			</div>
 
 			<div class="ui-g-12 layout-footer">
 				<div class="center-align" style="text-align: center;">
