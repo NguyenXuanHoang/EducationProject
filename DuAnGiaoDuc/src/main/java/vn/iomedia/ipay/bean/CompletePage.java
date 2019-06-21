@@ -33,7 +33,10 @@ public class CompletePage implements Serializable {
         try {
             log.debug("Get student from Context in Complete Page");
             this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-            listDetail = regService.getListRegistrationByStudentId(student.getId());
+            if (student != null) {
+                log.debug("if student not null,get Registration Detail.");
+                this.listDetail = regService.getListRegistrationByStudentId(student.getId());
+            }
         } catch (Exception exp) {
             log.error(exp.getMessage());
         }

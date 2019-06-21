@@ -52,7 +52,7 @@
 			<div class="content-section content-implementation">
 				<div style="font-size: 20px;">
 					<p>
-						Thí Sinh: <b>#{submit.student.studentName}</b>
+						Thí Sinh: <b>#{complete.student.studentName}</b>
 					</p>
 				</div>
 				<div>
@@ -64,8 +64,8 @@
 			</div>
 			<div class="content-section content-source">
 				<ul>
-					<ui:repeat value="#{submit.listDetail}" var="detail"
-						rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
+					<ui:repeat value="#{complete.listDetail}" var="detail"
+						rendered="#{not empty complete.listDetail}" varStatus="myVarStatus">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-2"></div>
