@@ -14,11 +14,10 @@ import vn.iomedia.ipay.service.RegAdmissionService;
 public class RegAdmissionServiceImpl implements RegAdmissionService {
 
     private Log log = LogFactory.getLog(RegAdmissionServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<RegistrationDetail> getListRegistrationByStudentId(int studentId) {
+    @SuppressWarnings("unchecked") @Override public List<RegistrationDetail> getListRegistrationByStudentId(
+            int studentId) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             List<RegistrationDetail> listDetail = em.createQuery(
                     "SELECT reg FROM RegistrationDetail reg WHERE reg.student.id = :id AND reg.onlinePaymentDetail IS NOT NULL")

@@ -12,10 +12,10 @@ import vn.iomedia.ipay.service.SubjectService;
 public class SubjectServiceImpl implements SubjectService {
 
     private Log log = LogFactory.getLog(SubjectServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
     @Override
     public GroupSubjects getSubjectById(int id) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("get Group Subject by shcool Id");
             GroupSubjects school = (GroupSubjects) em

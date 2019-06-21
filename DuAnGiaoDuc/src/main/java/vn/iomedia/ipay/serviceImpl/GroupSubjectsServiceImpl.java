@@ -14,11 +14,11 @@ import vn.iomedia.ipay.service.GroupSubjectService;
 public class GroupSubjectsServiceImpl implements GroupSubjectService {
 
     private Log log = LogFactory.getLog(GroupSubjectsServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
     @SuppressWarnings("unchecked")
     @Override
     public List<GroupSubjects> getListSubjectByMajorId(int majorId) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("get List group subject by major id.");
             List<GroupSubjects> subjects = em.createQuery(

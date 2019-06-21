@@ -13,11 +13,10 @@ public class StudentServiceImpl implements StudentService {
 
     private Log log = LogFactory.getLog(StudentServiceImpl.class);
 
-    EntityManager em = SQLConnection.getConnection();
-
     @SuppressWarnings("unused")
     @Override
     public void updatePass(Student student, String newPass) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("update password Student.");
             em.getTransaction().begin();
@@ -34,6 +33,7 @@ public class StudentServiceImpl implements StudentService {
     @SuppressWarnings("unused")
     @Override
     public void updateNumberRegis(Student student, int number) {
+        EntityManager em = SQLConnection.getConnection();
         if (number >= 0) {
             log.debug("if number Registration > 0,then continue update number Registration.");
             log.debug("numerRegis >= 0,update student");
