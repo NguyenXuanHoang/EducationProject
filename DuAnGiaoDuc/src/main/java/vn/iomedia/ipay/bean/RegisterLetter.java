@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +18,7 @@ import vn.iomedia.ipay.serviceImpl.RegAdmissionServiceImpl;
 import vn.iomedia.ipay.utils.ObjectUtils;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class RegisterLetter implements Serializable {
 
     private static final long serialVersionUID = 8556089000353339935L;
