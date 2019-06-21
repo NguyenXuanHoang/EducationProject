@@ -42,13 +42,13 @@ public class StudentServiceImpl implements StudentService {
             log.debug("numerRegis >= 0,update student");
             try {
                 em.getTransaction().begin();
-                int id = em
-                        .createQuery("UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
+                em.createQuery("UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
                         .setParameter("number", number).setParameter("dateRegis", StringUtillStudy.getDateRegis())
                         .setParameter("id", student.getId()).executeUpdate();
+                
                 em.getTransaction().commit();
-                student.setNumberRegis(student.getNumberRegis() - 1);
-                ObjectUtils.putObjectContext(CommonContanst.STUDENT, student);
+                Student stu = (Student) em.createQuery("SELECT stu FROM Student stu WHERE stu.id = :id").setParameter("id", student.getId()).getSingleResult();
+                ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
             } catch (Exception exp) {
                 log.error(exp);
             } finally {
@@ -56,4 +56,5 @@ public class StudentServiceImpl implements StudentService {
             }
         }
     }
+
 }
