@@ -41,27 +41,29 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             if (stu.getNumberRegis() == 2) {
                 log.debug("student still 2 registration number,save to DB.");
-                saveDataCartToDB(listDetail, paymentResult, stu);
+                saveDataCartToDB(listDetail, paymentResult);
                 stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
 
             } else if (stu.getNumberRegis() == 1) {
                 log.debug("student have only 1 registration,call to get old regis.");
                 List<RegistrationDetail> listDetailOld = regService.getListRegistrationByStudentId(stu.getId());
+                // entity Manager had been close here,need to open again.
                 if (CollectionUtils.isEmpty(listDetailOld)) {
                     log.debug("old list registration is empty,save new list regis.");
-                    saveDataCartToDB(listDetail, paymentResult, stu);
+                    saveDataCartToDB(listDetail, paymentResult);
                     stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
                 } else {
                     log.debug("delete old regis then save new list");
+                    em = SQLConnection.getConnection();
+                    em.getTransaction().begin();
                     for (RegistrationDetail oldDetail : listDetailOld) {
-                        em.getTransaction().begin();
                         if (!em.contains(oldDetail)) {
                             oldDetail = em.merge(oldDetail);
                         }
                         em.remove(oldDetail);
-                        em.getTransaction().commit();
                     }
-                    saveDataCartToDB(listDetail, paymentResult, stu);
+                    em.getTransaction().commit();
+                    saveDataCartToDB(listDetail, paymentResult);
                     stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
                 }
             }
@@ -72,7 +74,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
-    private void saveDataCartToDB(List<RegistrationDetail> listDetail, OnlinePaymentDetail paymentResult, Student stu) {
+    private void saveDataCartToDB(List<RegistrationDetail> listDetail, OnlinePaymentDetail paymentResult) {
         log.debug("save new registration to DB");
         EntityManager em = SQLConnection.getConnection();
         em.getTransaction().begin();
@@ -83,8 +85,6 @@ public class PaymentServiceImpl implements PaymentService {
                 em.persist(detail);
             }
             em.getTransaction().commit();
-            stu.setNumberRegis(stu.getNumberRegis() - 1);
-            ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
         } catch (Exception exp) {
             log.error(exp.getMessage());
         } finally {

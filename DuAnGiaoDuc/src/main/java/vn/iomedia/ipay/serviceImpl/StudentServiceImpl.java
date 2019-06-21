@@ -5,9 +5,11 @@ import javax.persistence.EntityManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.StudentService;
+import vn.iomedia.ipay.utils.ObjectUtils;
 import vn.iomedia.ipay.utils.StringUtillStudy;
 
 public class StudentServiceImpl implements StudentService {
@@ -41,11 +43,12 @@ public class StudentServiceImpl implements StudentService {
             try {
                 em.getTransaction().begin();
                 int id = em
-                        .createQuery(
-                                "UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
+                        .createQuery("UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
                         .setParameter("number", number).setParameter("dateRegis", StringUtillStudy.getDateRegis())
                         .setParameter("id", student.getId()).executeUpdate();
                 em.getTransaction().commit();
+                student.setNumberRegis(student.getNumberRegis() - 1);
+                ObjectUtils.putObjectContext(CommonContanst.STUDENT, student);
             } catch (Exception exp) {
                 log.error(exp);
             } finally {
