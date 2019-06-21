@@ -1,5 +1,8 @@
 package vn.iomedia.ipay.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import vn.iomedia.ipay.entity.GroupSubjects;
 import vn.iomedia.ipay.entity.Majors;
 import vn.iomedia.ipay.entity.Student;
@@ -112,6 +115,12 @@ public class StringUtillStudy {
             return total;
         }
         return total;
+    }
+
+    public static String getDateRegis() {
+        String pattern = "dd/MM/yyyy HH:MM:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(new Date());
     }
 
 }

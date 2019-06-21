@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
             if (stu.getNumberRegis() == 2) {
                 log.debug("student still 2 registration number,save to DB.");
                 saveDataCartToDB(listDetail, paymentResult, stu);
-                stuService.updateNumberRegis(stu, stu.getNumberRegis() - 1);
+                stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
 
             } else if (stu.getNumberRegis() == 1) {
                 log.debug("student have only 1 registration,call to get old regis.");
@@ -50,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
                 if (CollectionUtils.isEmpty(listDetailOld)) {
                     log.debug("old list registration is empty,save new list regis.");
                     saveDataCartToDB(listDetail, paymentResult, stu);
-                    stuService.updateNumberRegis(stu, stu.getNumberRegis() - 1);
+                    stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
                 } else {
                     log.debug("delete old regis then save new list");
                     for (RegistrationDetail oldDetail : listDetailOld) {
@@ -62,7 +62,7 @@ public class PaymentServiceImpl implements PaymentService {
                         em.getTransaction().commit();
                     }
                     saveDataCartToDB(listDetail, paymentResult, stu);
-                    stuService.updateNumberRegis(stu, stu.getNumberRegis() - 1);
+                    stuService.updateNumberAndDateRegis(stu, stu.getNumberRegis() - 1);
                 }
             }
         } catch (Exception exp) {

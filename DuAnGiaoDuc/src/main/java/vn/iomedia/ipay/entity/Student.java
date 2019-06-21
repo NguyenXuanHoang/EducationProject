@@ -52,6 +52,9 @@ public class Student implements Serializable {
     
     @Column(name = "number_regis")
     private Integer numberRegis;
+    
+    @Column(name = "date_regis")
+    private String dateRegis;
 
     @OneToMany(mappedBy = "student")
     private List<RegistrationDetail> registrationDetails;
@@ -256,6 +259,20 @@ public class Student implements Serializable {
         this.numberRegis = numberRegis;
     }
 
+    /**
+     * @return the dateRegis
+     */
+    public String getDateRegis() {
+        return dateRegis;
+    }
+
+    /**
+     * @param dateRegis the dateRegis to set
+     */
+    public void setDateRegis(String dateRegis) {
+        this.dateRegis = dateRegis;
+    }
+
     public String getStudentName() {
         if (!StringUtils.isEmpty(this.firstName) && !StringUtils.isEmpty(this.lastName)) {
             StringBuilder sb = new StringBuilder();
@@ -266,4 +283,5 @@ public class Student implements Serializable {
         }
         return null;
     };
+    
 }

@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.StudentService;
+import vn.iomedia.ipay.utils.StringUtillStudy;
 
 public class StudentServiceImpl implements StudentService {
 
@@ -32,15 +33,18 @@ public class StudentServiceImpl implements StudentService {
 
     @SuppressWarnings("unused")
     @Override
-    public void updateNumberRegis(Student student, int number) {
+    public void updateNumberAndDateRegis(Student student, int number) {
         EntityManager em = SQLConnection.getConnection();
         if (number >= 0) {
             log.debug("if number Registration > 0,then continue update number Registration.");
             log.debug("numerRegis >= 0,update student");
             try {
                 em.getTransaction().begin();
-                int id = em.createQuery("UPDATE Student SET numberRegis = :number WHERE id = :id")
-                        .setParameter("number", number).setParameter("id", student.getId()).executeUpdate();
+                int id = em
+                        .createQuery(
+                                "UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
+                        .setParameter("number", number).setParameter("dateRegis", StringUtillStudy.getDateRegis())
+                        .setParameter("id", student.getId()).executeUpdate();
                 em.getTransaction().commit();
             } catch (Exception exp) {
                 log.error(exp);

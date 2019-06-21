@@ -6,5 +6,5 @@ public interface StudentService {
 
     void updatePass(Student student, String newPass);
     
-    void updateNumberRegis(Student student, int number);
+    void updateNumberAndDateRegis(Student student, int number);
 }
