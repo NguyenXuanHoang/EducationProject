@@ -22,7 +22,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class PaymentServiceImpl implements PaymentService {
 
     private Log log = LogFactory.getLog(PaymentServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
+
     private RegAdmissionService regService = new RegAdmissionServiceImpl();
     private StudentService stuService = new StudentServiceImpl();
 
@@ -37,6 +37,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void saveDetailCart(List<RegistrationDetail> listDetail, OnlinePaymentDetail paymentResult, Student stu) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             if (stu.getNumberRegis() == 2) {
                 log.debug("student still 2 registration number,save to DB.");
@@ -66,11 +67,14 @@ public class PaymentServiceImpl implements PaymentService {
             }
         } catch (Exception exp) {
             log.error(exp.getMessage());
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 
     private void saveDataCartToDB(List<RegistrationDetail> listDetail, OnlinePaymentDetail paymentResult, Student stu) {
         log.debug("save new registration to DB");
+        EntityManager em = SQLConnection.getConnection();
         em.getTransaction().begin();
         try {
             for (RegistrationDetail detail : listDetail) {
@@ -83,6 +87,8 @@ public class PaymentServiceImpl implements PaymentService {
             ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
         } catch (Exception exp) {
             log.error(exp.getMessage());
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 

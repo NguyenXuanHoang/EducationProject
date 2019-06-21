@@ -15,10 +15,10 @@ import vn.iomedia.ipay.service.MajorService;
 public class MajorServiceImpl implements MajorService {
 
     private Log log = LogFactory.getLog(MajorServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
     @Override
     public Majors getMajorById(int id) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("get Major by Id.");
             Majors major = (Majors) em.createQuery("SELECT mj from Majors mj WHERE mj.id = :id").setParameter("id", id)
@@ -34,6 +34,7 @@ public class MajorServiceImpl implements MajorService {
     @SuppressWarnings("unchecked")
     @Override
     public List<Majors> getListMajorBySchoolId(int schoolId) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("Get list Major by School id.");
             List<Majors> majors = em.createQuery("SELECT m from Majors m WHERE m.school.id = :school_fk")
@@ -43,6 +44,7 @@ public class MajorServiceImpl implements MajorService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
 
     }

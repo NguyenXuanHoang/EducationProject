@@ -17,10 +17,10 @@ import vn.iomedia.ipay.service.SchoolService;
 public class SchoolServiceImpl implements SchoolService {
 
     private Log log = LogFactory.getLog(SchoolServiceImpl.class);
-    EntityManager em = SQLConnection.getConnection();
 
     @Override
     public List<School> searchListSchoolByName(String name) {
+        EntityManager em = SQLConnection.getConnection();
         if (StringUtils.isEmpty(name)) {
             log.debug("if name = null,then get all list of school.");
             try {
@@ -44,12 +44,14 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
 
     }
 
     @Override
     public School getSchoolById(int id) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("get school by Id.");
             School school = (School) em.createQuery("SELECT sch FROM School sch WHERE sch.id = :id")
@@ -59,13 +61,14 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
-            // SQLConnection.closeConnection(em);
+            SQLConnection.closeConnection();
         }
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<School> getSchoolsByGroupId(int groupId) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             List<School> schools = em.createQuery("SELECT sch FROM School sch WHERE sch.groupSchool.id = :id")
                     .setParameter("id", groupId).getResultList();
@@ -74,6 +77,7 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

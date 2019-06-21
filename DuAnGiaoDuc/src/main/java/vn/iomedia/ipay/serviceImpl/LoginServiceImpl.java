@@ -11,11 +11,11 @@ import vn.iomedia.ipay.service.LoginService;
 
 public class LoginServiceImpl implements LoginService {
 
-    private EntityManager em = SQLConnection.getConnection();
     private Log log = LogFactory.getLog(LoginServiceImpl.class);
 
     @Override
     public Student getStudentByIdCardAndPass(String idCard, String password) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             Student student = (Student) em
                     .createQuery("select u from Student u where u.idCard = :idCard and u.password = :password")
@@ -25,6 +25,7 @@ public class LoginServiceImpl implements LoginService {
             log.error(exp.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

@@ -12,10 +12,10 @@ import vn.iomedia.ipay.service.GroupSchoolService;
 public class GroupSchoolServiceImpl implements GroupSchoolService {
 
     private Log log = LogFactory.getLog(SchoolServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
     @Override
     public GroupSchool getGroupSchoolBySchoolId(int schoolId) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("Get Group School By School Id.");
             GroupSchool groupSchool = (GroupSchool) em.createQuery(
@@ -26,6 +26,7 @@ public class GroupSchoolServiceImpl implements GroupSchoolService {
             log.error(exp.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

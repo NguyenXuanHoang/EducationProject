@@ -1,7 +1,6 @@
 package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,10 +12,10 @@ import vn.iomedia.ipay.service.SubjectService;
 public class SubjectServiceImpl implements SubjectService {
 
     private Log log = LogFactory.getLog(SubjectServiceImpl.class);
-    private EntityManager em = SQLConnection.getConnection();
 
     @Override
     public GroupSubjects getSubjectById(int id) {
+        EntityManager em = SQLConnection.getConnection();
         try {
             log.debug("get Group Subject by shcool Id");
             GroupSubjects school = (GroupSubjects) em
@@ -27,6 +26,7 @@ public class SubjectServiceImpl implements SubjectService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 
