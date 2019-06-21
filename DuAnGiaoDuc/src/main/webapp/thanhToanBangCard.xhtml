@@ -4,39 +4,145 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Đây là màn hình Thanh Toán Bằng Card Điện thoại</title>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
 </h:head>
 <h:body>
-	<div>Đây là màn hình Thanh Toán Bằng Card Điện thoại</div>
-	<h:form>
-		<div>Ten Sinh Vien:</div>
-		<h:outputText value="#{paymentByCard.student.studentName}" />
-		<br />
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
 
-		<div>Chọn nhà mạng :(*)</div>
-		<h:inputText value="#{paymentByCard.mobileCompany}" required="true" />
-		<br />
-		<div>Mã thẻ cào :(*)</div>
-		<h:inputText value="#{paymentByCard.codeMobile}" required="true" />
-		<br />
-		<div>Số seri :(*)</div>
-		<h:inputText value="#{paymentByCard.seriMobile}" required="true" />
-		<br />
-	</h:form>
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN
+						SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
+		</div>
 
-	<h:form>
-		<br />
-		<h:commandButton action="#{paymentByCard.turnBack()}"
-			value="Quay lại" />
-		<br />
-		<h:commandButton action="#{paymentByCard.submit()}" value="Tiếp" />
-		<br />
-		<h:commandButton action="#{navigationButton.cancelRegister()}"
-			value="Hủy đăng ký" />
-	</h:form>
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Thanh Toán Bằng Thẻ Cào</h1>
+				<p>Thí sinh vui lòng nhập thông tin thẻ cào để tiến hành thanh
+					toán.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div style="font-size: 20px;">
+					<p>
+						Thí Sinh: <b>#{submit.student.studentName}</b>
+					</p>
+				</div>
+				<div>
+					<p>
+						Số Báo Danh: <i><h:outputText
+								value="#{schoolChose.student.idNumber}" /></i>
+					</p>
+				</div>
+				<div class="valign-wrapper" id="login-page">
+					<div class="container">
+						<div class="center-align">
+							<div class="row">
+								<div class="col s6 offset-s3">
+									<div class="card">
+										<div class="card-content">
+											<img class="responsive-img" style="max-width: 250px;"
+												src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png" />
+											<div class="left-align">
+												<h:form id="login-form">
+													<p:growl autoUpdate="true" />
+													<div class="row">
+														<div class="col s12 input-field">
+															<h:inputText id="oldPass"
+																value="#{paymentByCard.mobileCompany}" required="true"
+																requiredMessage="Vui lòng chọn nhà mạng." />
+															<h:outputLabel for="oldPass" value="Chọn nhà mạng (*):" />
+														</div>
+														<div class="col s12 input-field">
+															<h:inputSecret id="newPass"
+																value="#{paymentByCard.codeMobile}" required="true"
+																requiredMessage="Vui lòng nhập mã thẻ cào" />
+															<h:outputLabel for="newPass" value="Nhập mã thẻ cào (*):" />
+														</div>
+														<div class="col s12 input-field">
+															<h:inputSecret id="confirm"
+																value="#{paymentByCard.seriMobile}" required="true"
+																requiredMessage="Vui lòng nhập lại số seri(*):" />
+															<h:outputLabel for="confirm" value="Nhập số seri" />
+														</div>
+													</div>
+												</h:form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div align="center">
+					<span style="color: blue"><b>Tổng số tiền cần thanh
+							toán: </b></span>
+					<h:outputText style="color:red" value="#{checkOut.moneyString}" />
+				</div>
+			</div>
+			<div class="content-section content-source" style="padding: 10px">
+				<h:form>
+					<div class="ui-grid-row" align="right">
+						<p:commandButton value="Quay lại"
+							action="#{paymentByCard.turnBack()}"
+							styleClass="ui-priority-primary" />
+						<p:commandButton value="Tiếp theo"
+							action="#{paymentByCard.submit()}"
+							styleClass="ui-priority-primary" />
+						<p:commandButton value="Hủy đăng ký"
+							action="#{navigationButton.cancelRegister()}"
+							styleClass="ui-priority-primary" />
+					</div>
+				</h:form>
+			</div>
+		</div>
 
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
 
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
+	<script>
+			$(document).on("ready", function() {
+				$('#login-page').css({
+					'height' : window.innerHeight + 'px'
+				});
+			});
+		</script>
 </h:body>
 </html>
