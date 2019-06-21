@@ -25,6 +25,7 @@ public class LoginServiceImpl implements LoginService {
             log.error(exp.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

@@ -66,6 +66,8 @@ public class PaymentServiceImpl implements PaymentService {
             }
         } catch (Exception exp) {
             log.error(exp.getMessage());
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 
@@ -83,6 +85,8 @@ public class PaymentServiceImpl implements PaymentService {
             ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
         } catch (Exception exp) {
             log.error(exp.getMessage());
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 

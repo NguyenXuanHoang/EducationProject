@@ -29,6 +29,7 @@ public class GroupSubjectsServiceImpl implements GroupSubjectService {
             log.error(exp.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
 
     }

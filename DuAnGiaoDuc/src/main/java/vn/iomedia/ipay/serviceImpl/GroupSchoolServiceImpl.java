@@ -26,6 +26,7 @@ public class GroupSchoolServiceImpl implements GroupSchoolService {
             log.error(exp.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

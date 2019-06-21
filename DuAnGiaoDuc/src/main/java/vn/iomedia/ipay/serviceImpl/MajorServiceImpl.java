@@ -43,6 +43,7 @@ public class MajorServiceImpl implements MajorService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
 
     }

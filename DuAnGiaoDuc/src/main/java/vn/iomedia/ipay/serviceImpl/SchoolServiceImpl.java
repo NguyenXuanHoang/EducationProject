@@ -44,6 +44,7 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
 
     }
@@ -59,7 +60,7 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
-            // SQLConnection.closeConnection(em);
+            SQLConnection.closeConnection();
         }
     }
 
@@ -74,6 +75,7 @@ public class SchoolServiceImpl implements SchoolService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 

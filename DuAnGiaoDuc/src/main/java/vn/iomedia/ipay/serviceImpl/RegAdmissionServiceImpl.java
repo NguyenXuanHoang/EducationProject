@@ -27,6 +27,8 @@ public class RegAdmissionServiceImpl implements RegAdmissionService {
         } catch (Exception exp) {
             log.error(exp.getMessage());
             return null;
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 

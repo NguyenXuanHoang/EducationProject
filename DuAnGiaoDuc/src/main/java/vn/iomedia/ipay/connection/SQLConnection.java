@@ -10,15 +10,24 @@ import org.apache.commons.logging.LogFactory;
 public class SQLConnection {
 
     private static Log log = LogFactory.getLog(SQLConnection.class);
+    private static EntityManager em;
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("tuyensinh");
 
     public static EntityManager getConnection() {
         try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("tuyensinh");
-            EntityManager em = emf.createEntityManager();
+            if (em == null || !em.isOpen()) {
+                em = emf.createEntityManager();
+            }
             return em;
         } catch (Exception exp) {
             log.error(exp.getMessage());
-            return null;
+            return em;
+        }
+    }
+
+    public static void closeConnection() {
+        if (em != null && em.isOpen()) {
+            em.close();
         }
     }
 

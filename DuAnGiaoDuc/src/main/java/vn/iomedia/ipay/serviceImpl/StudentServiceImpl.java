@@ -26,6 +26,8 @@ public class StudentServiceImpl implements StudentService {
             em.getTransaction().commit();
         } catch (Exception exp) {
             log.error(exp);
+        } finally {
+            SQLConnection.closeConnection();
         }
     }
 
@@ -42,8 +44,9 @@ public class StudentServiceImpl implements StudentService {
                 em.getTransaction().commit();
             } catch (Exception exp) {
                 log.error(exp);
+            } finally {
+                SQLConnection.closeConnection();
             }
         }
     }
-
 }

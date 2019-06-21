@@ -1,7 +1,6 @@
 package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +26,7 @@ public class SubjectServiceImpl implements SubjectService {
             log.error(e.getMessage());
             return null;
         } finally {
+            SQLConnection.closeConnection();
         }
     }
 
