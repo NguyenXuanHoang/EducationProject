@@ -176,7 +176,7 @@
 									<div class="col s12 input-field"
 										style="color: red; font-size: 15px; padding-left: 20px">
 										<b><i>Thí sinh được phép thực hiện (còn lại) <h:outputText
-													value="#{registerAdmission.student.numberRegis}" /> lượt
+													value="#{registerLetter.student.numberRegis}" /> lượt
 												đăng ký
 										</i></b>
 									</div>
@@ -204,7 +204,7 @@
 					</div>
 				</div>
 				<ul>
-					<ui:repeat value="#{submit.listDetail}" var="detail"
+					<ui:repeat value="#{registerLetter.listDetail}" var="detail"
 						rendered="#{not empty registerLetter.listDetail}" varStatus="myVarStatus">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
