@@ -4,98 +4,283 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Màn hình Phiếu Đăng Ký</title>
+	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!-- Import jQuery before materialize.js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script
+		src="https://www.primefaces.org/showcase/javax.faces.resource/script/layout.js.xhtml?ln=showcase"></script>
+
+	<link rel="stylesheet"
+		href="https://www.primefaces.org/showcase/javax.faces.resource/css/layout.css.xhtml?ln=showcase" />
 </h:head>
 <h:body>
-đây là màn hình Phiếu Đăng Ký
-<h:form>
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goHome()}" value="Trang Chủ" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goRegisterLetter()}"
-			value="Phiếu Đăng Ký" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goSearch()}" value="Tra Cứu" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goRegisterAdmissions()}" value="Đăng Ký" />
-		<br />
-		<h:commandButton style="width:200px;"
-			action="#{navigationButton.goChangePass()}"
-			value="Đổi Mã Đăng Nhập" />
-		<br />
-	</h:form>
+	<div class="layout-wrapper">
+		<div class="layout-topbar">
+			<a id="menu-button" href="#"> <i class="pi pi-bars"></i>
+			</a><a href="#" class="logo-container"><img id="j_idt18"
+				src="http://thptlocthai.edu.vn/SiteFolders/THPTLocThai/354/thi_thpt_qg_logo-300x133.png"
+				alt="" /></a>
 
-	<!--This is student Information-->
-	<h:form>
-   Ten Sinh Vien: <h:outputText
-			value="#{registerLetter.student.studentName}" />
-		<br />  
- CMND:<h:outputText value="#{registerLetter.student.idCard}" />
-		<br />
- SBD:<h:outputText value="#{registerLetter.student.idNumber}" />
-		<br />
- Ngày sinh:<h:outputText value="#{registerLetter.student.dob}" />
-		<br />	
-Điểm thi:<br />	
-Toán <h:outputText value="#{registerLetter.student.mark.math}" /> Văn <h:outputText
-			value="#{registerLetter.student.mark.literature}" /> Lý <h:outputText
-			value="#{registerLetter.student.mark.physical}" /> Hóa <h:outputText
-			value="#{registerLetter.student.mark.chemistry}" /> 
-Anh Văn <h:outputText value="#{registerLetter.student.mark.english}" />
-		<br />
-Khu vực ưu tiên 
-<br /> 
-Khu vực :  <h:outputText
-			value="#{registerLetter.student.priorityArea.codeArea}" />
-		<br />
-Đối tượng ưu tiên 
-<br />
-		<h:outputText
-			value="#{registerLetter.student.priorityObject.codeObject}" />
-	</h:form>
-
-	<!-- This is register of Student -->
-
-	<ul>
-		<ui:repeat value="#{registerLetter.listDetail}" var="detail"
-			rendered="#{not empty registerLetter.listDetail}" varStatus="myVarStatus">
-			<h:form>
-				<div>
-					Nguyện vọng
-					<h:outputText value="#{myVarStatus.index + 1}" />
-				</div>
-				<div>Trường:</div>
-				<h:outputText value="#{detail.school.toName()}" />
-
-				<div>Ngành:</div>
-				<h:outputText value="#{detail.major.toName()}" />
-
-				<div>Tổ hợp môn:</div>
-				<h:outputText value="#{detail.groupSubjects.toName()}" />
-
-				<div>Điểm 3 môn:</div>
-				<h:outputText value="#{detail.totalMark}" />
-				<br />
-			</h:form>
-		</ui:repeat>
-	</ul>
-	<!-- Button Register  -->
-	<br />
-	<h:form>
-		<div>
-			Bạn còn
-			<h:outputText value="#{registerLetter.student.numberRegis}" />
-			lượt đăng ký
+			<ul class="layout-topbar-menu">
+				<li><a href="/DuAnGiaoDuc/thongtin.xhtml">THÔNG TIN TUYỂN
+						SINH</a></li>
+				<li><a href="/DuAnGiaoDuc/huongdan.xhtml">HƯỚNG DẪN ĐĂNG KÝ</a></li>
+				<li><a href="/DuAnGiaoDuc/lienhe.xhtml">LIÊN HỆ</a></li>
+			</ul>
 		</div>
-		<h:commandButton action="#{registerLetter.choseRegis()}"
-			value="Đăng Ký">
-		</h:commandButton>
-	</h:form>
-	<br />
+
+		<div class="layout-sidebar">
+			<div class="nano">
+				<div class="nano-content menu-content">
+					<ul id="layout-menu" class="layout-menu">
+						<li id="submenu-ajax"><a href="/DuAnGiaoDuc/index.xhtml"><img
+								id="j_idt67"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/panel.svg.xhtml?ln=showcase"
+								alt="" /> <span>Trang Chủ</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/phieuDangKy.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/overlay.svg.xhtml?ln=showcase"
+								alt="" /> <span>Phiếu Đăng Ký</span> </a></li>
+						<li id="submenu-input"><a href="#"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/misc.svg.xhtml?ln=showcase"
+								alt="" /> <span>Tra Cứu</span> </a></li>
+						<li id="submenu-input"><a href="/DuAnGiaoDuc/dangKy.xhtml"><img
+								id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/ajaxCore.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đăng Ký Tuyển Sinh</span> </a></li>
+						<li id="submenu-input"><a
+							href="/DuAnGiaoDuc/doiMatKhau.xhtml"><img id="j_idt111"
+								src="https://www.primefaces.org/showcase/javax.faces.resource/images/icons/clientSideValidation.svg.xhtml?ln=showcase"
+								alt="" /> <span>Đổi Mã Đăng Nhập</span> </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="layout-content">
+			<div class="content-section content-submenu"></div>
+			<div class="content-section content-introduction">
+				<h1>Đăng Ký Tuyển Sinh ĐH, CĐ 2019</h1>
+				<p>Thí sinh vui lòng xem lại thông tin cá nhân và đọc kỹ hướng
+					dẫn trước khi thực hiện đăng ký. Nếu có bất kỳ thắc mắc gì xin vui
+					lòng liên hệ với chúng tôi theo các thông tin tại menu liên hệ.</p>
+			</div>
+			<div class="content-section content-implementation">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12" style="padding-right: 5px">
+							<div
+								style="border: 2px groove blue; padding-left: 15px; padding-right: 15px;">
+								<h5>Thông Tin Sinh Viên</h5>
+								<hr />
+								<h:form id="mainForm">
+									<p:outputPanel id="detailsPanel" style="display:block" />
+									<table>
+										<tr>
+											<td>Họ và tên SV:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.studentName}" /></td>
+										</tr>
+										<tr>
+											<td>Ngày Sinh:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.dob}" /></td>
+										</tr>
+										<tr>
+											<td>Chứng Minh Nhân Dân:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.idCard}" /></td>
+										</tr>
+										<tr>
+											<td>Số Báo Danh:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.idNumber}" /></td>
+										</tr>
+										<tr>
+											<td>Điểm Thi:</td>
+											<td>
+												<table>
+													<tr>
+														<td>Điểm Toán:</td>
+														<td><h:outputText
+																value="#{registerAdmission.student.mark.math}" /></td>
+													</tr>
+													<tr>
+														<td>Điểm Lý:</td>
+														<td><h:outputText
+																value="#{registerAdmission.student.mark.physical}" /></td>
+													</tr>
+													<tr>
+														<td>Điểm Hóa:</td>
+														<td><h:outputText
+																value="#{registerAdmission.student.mark.chemistry}" /></td>
+													</tr>
+													<tr>
+														<td>Điểm Văn:</td>
+														<td><h:outputText
+																value="#{registerAdmission.student.mark.literature}" /></td>
+													</tr>
+													<tr>
+														<td>Điểm Anh:</td>
+														<td><h:outputText
+																value="#{registerAdmission.student.mark.english}" /></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td>Khu vực ưu tiên:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.priorityArea.codeArea}" /></td>
+										</tr>
+										<tr>
+											<td>Đối tượng ưu tiên:</td>
+											<td><h:outputText
+													value="#{registerAdmission.student.priorityObject.codeObject}" /></td>
+										</tr>
+									</table>
+								</h:form>
+							</div>
+						</div>
+
+						<div class="ui-grid-col-12" style="padding-left: 5px">
+							<div
+								style="background-color: gray; margin: 0px; padding-left: 5px; padding-right: 5px; border: 2px groove blue; text-align: center;">
+								<div
+									style="background-color: #A9F5F2; color: black; height: 30px; text-align: justify;">
+									<h5>
+										<b><i>Đợt Nguyện Vọng 1 (01/06/2019 - 31/06/2019)</i></b>
+									</h5>
+								</div>
+								<div
+									style="background-color: white; color: white-space; font-size: 20px; text-align: justify; padding-left: 20px; padding-right: 20px; padding-top: 1px; padding-bottom: 1px; margin: 5px; margin-top: 15px;">
+									<i><p>Thí sinh được đăng ký tối đa 2 lần, mỗi lần cho 1
+											trường (bao gồm cả trường thành viên trong nhóm và trường
+											bình thường) và tối đa 2 nguyện vọng.</p>
+										<p>Nếu thí sinh chỉ đăng ký vào 1 nhóm trường. Thí sinh có
+											thể chọn đến 4 trường thành viên trong nhóm.</p>
+										<p>Thí sinh không được phép chọn lại trường đã đăng ký.</p></i>
+								</div>
+								<h:form>
+									<div class="col s12 input-field"
+										style="color: red; font-size: 15px; padding-left: 20px">
+										<b><i>Thí sinh được phép thực hiện (còn lại) <h:outputText
+													value="#{registerAdmission.student.numberRegis}" /> lượt
+												đăng ký
+										</i></b>
+									</div>
+									<div class="col s12 input-field" style="padding-bottom: 15px;">
+										<div class="center-align">
+											<h:commandLink value="Đăng Ký"
+												action="#{registerAdmission.choseSchool()}"
+												styleClass="btn btn-large" />
+										</div>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content-section content-source">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div style="font-size: 25px;">
+							<span style="color: blue"><b><p>Phiếu Đăng Ký</p></b></span> <span
+								style="font-size: 15px"><i><p>Ngày đăng ký:</p></i></span>
+						</div>
+					</div>
+				</div>
+				<ul>
+					<ui:repeat value="#{submit.listDetail}" var="detail"
+						rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-2"></div>
+								<div class="ui-grid-col-8" style="padding: 10px">
+									<p:panel>
+										<h:form>
+											<div
+												style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
+												<b><i> Nguyện vọng <h:outputText
+															value="#{myVarStatus.index + 1}" /></i></b>
+											</div>
+											<hr />
+											<br />
+											<div
+												style="font-family: Times New Roman, Times, serif; font-size: 15px; text-align: left;">
+												<div class="ui-grid-row">
+													<div class="ui-grid-col-5">
+														<h:outputLabel value="Trường: " />
+													</div>
+													<div class="ui-grid-col-7">
+														<h:outputText value="#{detail.school.toName()}" />
+													</div>
+												</div>
+												<br />
+												<div class="ui-grid-row">
+													<div class="ui-grid-col-5">
+														<h:outputLabel value="Ngành: " />
+													</div>
+													<div class="ui-grid-col-7">
+														<h:outputText value="#{detail.major.toName()}" />
+													</div>
+												</div>
+												<br />
+												<div class="ui-grid-row">
+													<div class="ui-grid-col-5">
+														<h:outputLabel value="Tổ hợp môn: " />
+													</div>
+													<div class="ui-grid-col-7">
+														<h:outputText value="#{detail.groupSubjects.toName()}" />
+													</div>
+												</div>
+												<br />
+												<div class="ui-grid-row">
+													<div class="ui-grid-col-5">
+														<h:outputLabel value="Điểm 3 môn: " />
+													</div>
+													<div class="ui-grid-col-7">
+														<h:outputText value="#{detail.totalMark}" />
+													</div>
+												</div>
+											</div>
+										</h:form>
+									</p:panel>
+								</div>
+								<div class="ui-grid-col-2"></div>
+							</div>
+						</div>
+					</ui:repeat>
+				</ul>
+			</div>
+		</div>
+
+		<div class="ui-g-12 layout-footer">
+			<div class="center-align">
+				<span class="footer-info-center">Hệ Thống Đăng Ký Tuyển Sinh
+					Trực Tuyến. Copyright © 2019 All rights reserved.</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="j_idt783"
+		style="width: 64px; height: 64px; position: fixed; right: 5px; bottom: 5px">
+		<div id="j_idt783_start" style="display: none">
+			<i class="pi pi-spin pi-spinner ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt783_complete" style="display: none"></div>
+	</div>
 </h:body>
 </html>
