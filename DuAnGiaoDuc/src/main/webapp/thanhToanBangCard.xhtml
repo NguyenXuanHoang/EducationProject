@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>Hệ Thống Đăng Ký Tuyển Sinh Trực Tuyến</title>
 	<!-- Compiled and minified CSS -->
@@ -78,17 +80,20 @@
 															<h:outputLabel for="oldPass" value="Chọn nhà mạng (*):" />
 														</div>
 														<div class="col s12 input-field">
-															<h:inputSecret id="newPass"
+															<h:inputText id="newPass"
 																value="#{paymentByCard.codeMobile}" required="true"
 																requiredMessage="Vui lòng nhập mã thẻ cào" />
 															<h:outputLabel for="newPass" value="Nhập mã thẻ cào (*):" />
 														</div>
 														<div class="col s12 input-field">
-															<h:inputSecret id="confirm"
+															<h:inputText id="confirm"
 																value="#{paymentByCard.seriMobile}" required="true"
 																requiredMessage="Vui lòng nhập lại số seri(*):" />
 															<h:outputLabel for="confirm" value="Nhập số seri" />
 														</div>
+														<p:commandButton value="Tiếp theo"
+															action="#{paymentByCard.submit()}" update="login-form"
+															styleClass="ui-priority-primary" />
 													</div>
 												</h:form>
 											</div>
@@ -111,9 +116,7 @@
 						<p:commandButton value="Quay lại"
 							action="#{paymentByCard.turnBack()}"
 							styleClass="ui-priority-primary" />
-						<p:commandButton value="Tiếp theo"
-							action="#{paymentByCard.submit()}"
-							styleClass="ui-priority-primary" />
+
 						<p:commandButton value="Hủy đăng ký"
 							action="#{navigationButton.cancelRegister()}"
 							styleClass="ui-priority-primary" />
@@ -138,11 +141,11 @@
 		<div id="j_idt783_complete" style="display: none"></div>
 	</div>
 	<script>
-			$(document).on("ready", function() {
-				$('#login-page').css({
-					'height' : window.innerHeight + 'px'
-				});
+		$(document).on("ready", function() {
+			$('#login-page').css({
+				'height' : window.innerHeight + 'px'
 			});
-		</script>
+		});
+	</script>
 </h:body>
 </html>
