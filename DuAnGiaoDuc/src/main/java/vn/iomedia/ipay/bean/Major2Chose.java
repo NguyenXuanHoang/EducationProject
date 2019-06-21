@@ -59,14 +59,13 @@ public class Major2Chose implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        if (student != null) {
-            log.debug("if student not null,set student name.");
-        }
-        this.schoolsSelect = (List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL);
-        if (schChose == null) {
-            this.schChose = schoolsSelect.get(0);
-            if (!CollectionUtils.isEmpty(schoolsSelect)) {
+        try {
+            log.debug("get Student,listSchool,schoolSelect from Context in Major2chose page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            this.schoolsSelect = (List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL);
+            if (!CollectionUtils.isEmpty(schoolsSelect) && schoolsSelect.size()==1) {
+                log.debug("Set school ,major default.");
+                this.schChose = schoolsSelect.get(0);
                 this.majors1 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
                 if (!CollectionUtils.isEmpty(majors1)) {
                     this.grpSj1 = subService.getListSubjectByMajorId(majors1.get(0).getId());
@@ -74,11 +73,12 @@ public class Major2Chose implements Serializable {
                 this.majors2 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
                 if (!CollectionUtils.isEmpty(majors1)) {
                     this.grpSj2 = subService.getListSubjectByMajorId(majors2.get(0).getId());
+
                 }
-
             }
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
         }
-
     }
 
     public void searchMajor1() {
@@ -115,20 +115,22 @@ public class Major2Chose implements Serializable {
         this.totalMark2 = StringUtillStudy.getTotalMark(student, sub2, major2);
     }
 
-    @SuppressWarnings("unused")
     public String submit() {
         listDetail = new ArrayList<>();
         if (student != null && this.major1 != null && this.sub1 != null && this.schChose != null) {
+            log.debug("Make new registration 1.");
             RegistrationDetail detail1 = getRegistrationDetail(student, schChose, major1, sub1, totalMark1);
             listDetail.add(detail1);
         }
 
         if (student != null && major2 != null && sub2 != null && schChose != null) {
+            log.debug("Make new registration 2.");
             RegistrationDetail detail2 = getRegistrationDetail(student, schChose, major2, sub2, totalMark2);
             listDetail.add(detail2);
         }
 
         if (!CollectionUtils.isEmpty(listDetail) && listDetail.size() == 2) {
+            log.debug("send list detail to Context");
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, null);
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, listDetail);
             if (!StringUtils.isEmpty(student.getEmail().trim())) {

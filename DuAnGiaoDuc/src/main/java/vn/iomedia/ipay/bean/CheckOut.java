@@ -7,6 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
@@ -20,6 +23,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class CheckOut implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
+    private Log log = LogFactory.getLog(CheckOut.class);
     private Student student;
     private List<RegistrationDetail> listDetail;
     private GroupSchool group;
@@ -30,33 +34,45 @@ public class CheckOut implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
-        this.group = (GroupSchool) ObjectUtils.getObjectByString(CommonContanst.GROUP_SCHOOL);
-        if ((group != null) && (group.getNumberChose() == 2)) {
-            money = CommonContanst.single_school + CommonContanst.single_school_extra;
-        } else if ((group != null) && (group.getNumberChose() == 4)) {
-            String schoolName = listDetail.get(0).getSchool().getName().trim();
-            listDetail.forEach(detail -> {
-                if (detail != null && detail.getSchool() != null && detail.getSchool().getName() != null) {
-                    if (!detail.getSchool().getName().trim().equals(schoolName)) {
-                        money = CommonContanst.group_school + CommonContanst.group_school_extra;
-                    }
-                }
-            });
-            if (money == 0) {
+        try {
+            log.debug("Get Student,list Detail,group from Context in checkOut page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
+            this.group = (GroupSchool) ObjectUtils.getObjectByString(CommonContanst.GROUP_SCHOOL);
+         
+            if ((group != null) && (group.getNumberChose() == 2)) {
+                log.debug("if group number ==2 ,return money.");
                 money = CommonContanst.single_school + CommonContanst.single_school_extra;
+            } else if ((group != null) && (group.getNumberChose() == 4)) {
+                log.debug("if group number ==4 ,change option.");
+                String schoolName = listDetail.get(0).getSchool().getName().trim();
+                listDetail.forEach(detail -> {
+                    if (detail != null && detail.getSchool() != null && detail.getSchool().getName() != null) {
+                        if (!detail.getSchool().getName().trim().equals(schoolName)) {
+                            money = CommonContanst.group_school + CommonContanst.group_school_extra;
+                        }
+                    }
+                });
+               
+                if (money == 0) {
+                    log.debug("after condition,return money.");
+                    money = CommonContanst.single_school + CommonContanst.single_school_extra;
+                }
             }
+            this.moneyString = String.valueOf(money);
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
         }
-        this.moneyString = String.valueOf(money);
     }
 
     public String submit() {
         ObjectUtils.putObjectContext(CommonContanst.PAYMENT, moneyString);
         if (!StringUtils.isEmpty(payment) && CommonContanst.MOBILE.equals(payment)) {
+            log.debug("User chose Mobile,return mobile.");
             return CommonContanst.MOBILE;
 
         } else if (!StringUtils.isEmpty(payment) && CommonContanst.ATM.equals(payment)) {
+            log.debug("User chose ATM,return ATM.");
             return CommonContanst.ATM;
         }
         return CommonContanst.FAIL;

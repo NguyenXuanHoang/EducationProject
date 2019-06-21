@@ -24,18 +24,23 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class RegisterAdmission implements Serializable {
 
     private static final long serialVersionUID = 8556089000353339935L;
-
     private Log log = LogFactory.getLog(RegAdmissionService.class);
     private SchoolService schoolService = new SchoolServiceImpl();
     private Student student;
 
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+        try {
+            log.debug("get Studentfrom Context in Registration Admission page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
+        }
     }
 
     public String choseSchool() {
         if (student != null && student.getNumberRegis() == 0) {
+            log.debug("Student do not have change for register,return.");
             return CommonContanst.RETURN;
         }
         if (student != null && student.getNumberRegis() >= 1) {

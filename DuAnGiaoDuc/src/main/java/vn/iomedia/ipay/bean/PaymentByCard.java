@@ -7,6 +7,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.microsoft.sqlserver.jdbc.StringUtils;
+
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.OnlinePaymentDetail;
 import vn.iomedia.ipay.entity.RegistrationDetail;
@@ -20,6 +25,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class PaymentByCard implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
+    private Log log = LogFactory.getLog(PaymentByCard.class);
     private String mobileCompany;
     private String codeMobile;
     private String seriMobile;
@@ -31,16 +37,21 @@ public class PaymentByCard implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
+        try {
+            log.debug("get Student,listDetail from Context in payment by card page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
+        }
     }
 
     public String submit() {
         OnlinePaymentDetail paymentResult = null;
-        // if (!StringUtils.isEmpty(mobileCompany) && !StringUtils.isEmpty(codeMobile)
-        // && !StringUtils.isEmpty(seriMobile)) {
-        paymentResult = paymentService.paymentByMobileCard(mobileCompany, codeMobile, seriMobile);
-        // }
+        if (!StringUtils.isEmpty(mobileCompany) && !StringUtils.isEmpty(codeMobile)
+                && !StringUtils.isEmpty(seriMobile)) {
+            paymentResult = paymentService.paymentByMobileCard(mobileCompany, codeMobile, seriMobile);
+        }
         if (paymentResult != null && paymentResult.isStatusTrans()) {
             paymentService.saveDetailCart(listDetail, paymentResult, student);
             return CommonContanst.SUCCESS;

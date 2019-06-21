@@ -22,7 +22,6 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class RegisterLetter implements Serializable {
 
     private static final long serialVersionUID = 8556089000353339935L;
-
     private Log log = LogFactory.getLog(RegAdmissionService.class);
     private RegAdmissionService regService = new RegAdmissionServiceImpl();
     private Student student;
@@ -30,10 +29,15 @@ public class RegisterLetter implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        if (student != null) {
-            log.debug("if student not null,get Registration Detail.");
-            listDetail = regService.getListRegistrationByStudentId(student.getId());
+        try {
+            log.debug("get Student,listDetail from Context in registration page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            if (student != null) {
+                log.debug("if student not null,get Registration Detail.");
+                this.listDetail = regService.getListRegistrationByStudentId(student.getId());
+            }
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
         }
     }
 
@@ -66,7 +70,8 @@ public class RegisterLetter implements Serializable {
     }
 
     /**
-     * @param listDetail the listDetail to set
+     * @param listDetail
+     *            the listDetail to set
      */
     public void setListDetail(List<RegistrationDetail> listDetail) {
         this.listDetail = listDetail;

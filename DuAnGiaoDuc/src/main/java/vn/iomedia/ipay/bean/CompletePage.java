@@ -7,6 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.RegistrationDetail;
 import vn.iomedia.ipay.entity.Student;
@@ -19,7 +22,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class CompletePage implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
-
+    private Log log = LogFactory.getLog(CompletePage.class);
     private Student student;
     private List<RegistrationDetail> listDetail;
 
@@ -27,8 +30,13 @@ public class CompletePage implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        listDetail = regService.getListRegistrationByStudentId(student.getId());
+        try {
+            log.debug("Get student from Context in Complete Page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            listDetail = regService.getListRegistrationByStudentId(student.getId());
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
+        }
     }
 
     /**
@@ -39,7 +47,8 @@ public class CompletePage implements Serializable {
     }
 
     /**
-     * @param student the student to set
+     * @param student
+     *            the student to set
      */
     public void setStudent(Student student) {
         this.student = student;
@@ -53,11 +62,11 @@ public class CompletePage implements Serializable {
     }
 
     /**
-     * @param listDetail the listDetail to set
+     * @param listDetail
+     *            the listDetail to set
      */
     public void setListDetail(List<RegistrationDetail> listDetail) {
         this.listDetail = listDetail;
     }
-    
-    
+
 }

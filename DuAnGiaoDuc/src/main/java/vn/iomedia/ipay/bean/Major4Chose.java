@@ -74,46 +74,52 @@ public class Major4Chose implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        if (student != null) {
-            log.debug("if student not null,set student name.");
-        }
-        this.school =  (School) ObjectUtils.getObjectByString(CommonContanst.SCHOOL);
-        this.schoolsSelect = (List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL);
-        if (schChose1 == null) {
-            if (!CollectionUtils.isEmpty(schoolsSelect)) {
-                this.majors1 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
-                if (!CollectionUtils.isEmpty(majors1)) {
-                    this.grpSj1 = subService.getListSubjectByMajorId(majors1.get(0).getId());
+        try {
+            log.debug("get Student,listSchool,schoolSelect from Context in Major4chose page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            this.school = (School) ObjectUtils.getObjectByString(CommonContanst.SCHOOL);
+            this.schoolsSelect = (List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL);
+            if (schChose1 == null) {
+                log.debug("Schoole Choose 1 null,set data default for layout.");
+                if (!CollectionUtils.isEmpty(schoolsSelect)) {
+                    this.majors1 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
+                    if (!CollectionUtils.isEmpty(majors1)) {
+                        this.grpSj1 = subService.getListSubjectByMajorId(majors1.get(0).getId());
+                    }
                 }
             }
-        }
 
-        if (schChose2 == null) {
-            if (!CollectionUtils.isEmpty(schoolsSelect)) {
-                this.majors2 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
-                if (!CollectionUtils.isEmpty(majors2)) {
-                    this.grpSj2 = subService.getListSubjectByMajorId(majors2.get(0).getId());
+            if (schChose2 == null) {
+                log.debug("Schoole Choose 2 null,set data default for layout.");
+                if (!CollectionUtils.isEmpty(schoolsSelect)) {
+                    this.majors2 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
+                    if (!CollectionUtils.isEmpty(majors2)) {
+                        this.grpSj2 = subService.getListSubjectByMajorId(majors2.get(0).getId());
+                    }
                 }
             }
-        }
 
-        if (schChose3 == null) {
-            if (!CollectionUtils.isEmpty(schoolsSelect)) {
-                this.majors3 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
-                if (!CollectionUtils.isEmpty(majors3)) {
-                    this.grpSj3 = subService.getListSubjectByMajorId(majors3.get(0).getId());
+            if (schChose3 == null) {
+                log.debug("Schoole Choose 3 null,set data default for layout.");
+                if (!CollectionUtils.isEmpty(schoolsSelect)) {
+                    this.majors3 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
+                    if (!CollectionUtils.isEmpty(majors3)) {
+                        this.grpSj3 = subService.getListSubjectByMajorId(majors3.get(0).getId());
+                    }
                 }
             }
-        }
 
-        if (schChose4 == null) {
-            if (!CollectionUtils.isEmpty(schoolsSelect)) {
-                this.majors4 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
-                if (!CollectionUtils.isEmpty(majors4)) {
-                    this.grpSj4 = subService.getListSubjectByMajorId(majors4.get(0).getId());
+            if (schChose4 == null) {
+                log.debug("Schoole Choose 4 null,set data default for layout.");
+                if (!CollectionUtils.isEmpty(schoolsSelect)) {
+                    this.majors4 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
+                    if (!CollectionUtils.isEmpty(majors4)) {
+                        this.grpSj4 = subService.getListSubjectByMajorId(majors4.get(0).getId());
+                    }
                 }
             }
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
         }
     }
 
@@ -208,6 +214,7 @@ public class Major4Chose implements Serializable {
         }
 
         if (!CollectionUtils.isEmpty(listDetail) && listDetail.size() == 4) {
+            log.debug("send list detail to Context");
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, null);
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, listDetail);
             if (!StringUtils.isEmpty(student.getEmail().trim())) {
@@ -694,7 +701,8 @@ public class Major4Chose implements Serializable {
     }
 
     /**
-     * @param school the school to set
+     * @param school
+     *            the school to set
      */
     public void setSchool(School school) {
         this.school = school;

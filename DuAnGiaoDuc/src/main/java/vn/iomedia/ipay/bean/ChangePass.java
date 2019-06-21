@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
@@ -19,6 +22,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class ChangePass implements Serializable {
 
     private static final long serialVersionUID = 8765845877376608394L;
+    private Log log = LogFactory.getLog(ChangePass.class);
 
     private String oldPass;
     private String newPass;
@@ -28,15 +32,22 @@ public class ChangePass implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+        try {
+            log.debug("Get Student from Context in changePass page.");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
+        }
     }
 
     public String submit() {
         if (!student.getPassword().equals(oldPass)) {
+            log.debug("if oldPass not equal with current Pass,return fail");
             return CommonContanst.FAIL;
         }
 
         if (!StringUtils.isEmpty(newPass) && !StringUtils.isEmpty(newPass2) && newPass.equals(newPass2)) {
+            log.debug("Save new pass to Student and return success.");
             service.updatePass(student, newPass);
             return CommonContanst.SUCCESS;
         }

@@ -7,6 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
@@ -19,6 +22,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class Submit implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
+    private Log log = LogFactory.getLog(Submit.class);
     private Student student;
     private List<RegistrationDetail> listDetail;
     private String otpInput;
@@ -27,9 +31,14 @@ public class Submit implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
-        this.otpOutput = (String) ObjectUtils.getObjectByString(CommonContanst.OTP);
+        try {
+            log.debug("get Student,listDetail,OTP from Context in submit page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            this.listDetail = (List<RegistrationDetail>) ObjectUtils.getObjectByString(CommonContanst.LIST_DETAIL);
+            this.otpOutput = (String) ObjectUtils.getObjectByString(CommonContanst.OTP);
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
+        }
     }
 
     public String submit() {

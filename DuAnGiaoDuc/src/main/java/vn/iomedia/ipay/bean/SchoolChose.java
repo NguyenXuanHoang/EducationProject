@@ -29,7 +29,6 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class SchoolChose implements Serializable {
 
     private static final long serialVersionUID = -4554613380514861507L;
-
     private Log log = LogFactory.getLog(SchoolChose.class);
 
     private Student student;
@@ -44,12 +43,14 @@ public class SchoolChose implements Serializable {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
-        this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
-        if (student != null) {
-            log.debug("if student not null,set student name.");
+        try {
+            log.debug("get Studentfrom Context in School Chose page");
+            this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
+            schools = new ArrayList<>();
+            schools.addAll((List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL));
+        } catch (Exception exp) {
+            log.error(exp.getMessage());
         }
-        schools = new ArrayList<>();
-        schools.addAll((List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL));
     }
 
     @SuppressWarnings("unchecked")
