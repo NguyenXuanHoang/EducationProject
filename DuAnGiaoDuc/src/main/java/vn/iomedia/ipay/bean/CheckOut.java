@@ -73,7 +73,8 @@ public class CheckOut implements Serializable {
 
         } else if (!StringUtils.isEmpty(payment) && CommonContanst.ATM.equals(payment)) {
             log.debug("User chose ATM,return ATM.");
-            return CommonContanst.ATM;
+            //this code will implement payment by ATM in future.            
+            return CommonContanst.MOBILE;
         }
         return CommonContanst.FAIL;
     }

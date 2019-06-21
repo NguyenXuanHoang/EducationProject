@@ -118,9 +118,10 @@ public class StringUtillStudy {
     }
 
     public static String getDateRegis() {
+        Date date = new Date();
         String pattern = "dd/MM/yyyy HH:MM:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        return simpleDateFormat.format(new Date());
+        return simpleDateFormat.format(date);
     }
 
 }

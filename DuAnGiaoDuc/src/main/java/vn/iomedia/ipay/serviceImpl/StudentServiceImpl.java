@@ -41,13 +41,15 @@ public class StudentServiceImpl implements StudentService {
             log.debug("if number Registration > 0,then continue update number Registration.");
             log.debug("numerRegis >= 0,update student");
             try {
+                String date = StringUtillStudy.getDateRegis();
+                log.debug("Date for new registration =" + date);
                 em.getTransaction().begin();
                 em.createQuery("UPDATE Student SET numberRegis = :number , dateRegis = :dateRegis WHERE id = :id")
-                        .setParameter("number", number).setParameter("dateRegis", StringUtillStudy.getDateRegis())
+                        .setParameter("number", number).setParameter("dateRegis", date)
                         .setParameter("id", student.getId()).executeUpdate();
-                
                 em.getTransaction().commit();
-                Student stu = (Student) em.createQuery("SELECT stu FROM Student stu WHERE stu.id = :id").setParameter("id", student.getId()).getSingleResult();
+                Student stu = (Student) em.createQuery("SELECT stu FROM Student stu WHERE stu.id = :id")
+                        .setParameter("id", student.getId()).getSingleResult();
                 ObjectUtils.putObjectContext(CommonContanst.STUDENT, stu);
             } catch (Exception exp) {
                 log.error(exp);
