@@ -218,6 +218,10 @@ public class Major4Chose implements Serializable {
         }
 
         if (!CollectionUtils.isEmpty(listDetail) && listDetail.size() == 4) {
+            log.debug("check logic 1 school have only 2 major");
+            if (!checklogicOneSchoolTwoMajor(listDetail)) {
+                return CommonContanst.FAIL;
+            }
             log.debug("send list detail to Context");
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, null);
             ObjectUtils.putObjectContext(CommonContanst.LIST_DETAIL, listDetail);
@@ -230,6 +234,21 @@ public class Major4Chose implements Serializable {
             return CommonContanst.SUCCESS;
         }
         return CommonContanst.FAIL;
+    }
+
+    private boolean checklogicOneSchoolTwoMajor(List<RegistrationDetail> listDetail) {
+        for (int i = 0; i < listDetail.size(); i++) {
+            int total = 0;
+            for (int j = i + 1; j < listDetail.size(); j++) {
+                if (listDetail.get(i).getSchool().getName().equals(listDetail.get(j).getSchool().getName())) {
+                    total++;
+                    if (total >= 2) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public String turnBack() {

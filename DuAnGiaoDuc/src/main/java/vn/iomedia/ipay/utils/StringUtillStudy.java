@@ -119,7 +119,7 @@ public class StringUtillStudy {
 
     public static String getDateRegis() {
         Date date = new Date();
-        String pattern = "dd/MM/yyyy hh:mm:ss";
+        String pattern = "dd/MM/yyyy HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
     }
