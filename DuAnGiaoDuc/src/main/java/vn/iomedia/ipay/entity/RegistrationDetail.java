@@ -45,10 +45,9 @@ public class RegistrationDetail implements Serializable {
 
     @Column(name = "total_mark")
     private String totalMark;
-    
-    @Column(name = "order_aspiration")
-    private Integer orderAspiration;
 
+    @Column(name = "order_aspiration")
+    private int orderAspiration;
 
     public int getId() {
         return id;
@@ -120,7 +119,8 @@ public class RegistrationDetail implements Serializable {
     }
 
     /**
-     * @param totalMark the totalMark to set
+     * @param totalMark
+     *            the totalMark to set
      */
     public void setTotalMark(String totalMark) {
         this.totalMark = totalMark;
@@ -129,14 +129,15 @@ public class RegistrationDetail implements Serializable {
     /**
      * @return the orderAspiration
      */
-    public Integer getOrderAspiration() {
+    public int getOrderAspiration() {
         return orderAspiration;
     }
 
     /**
-     * @param orderAspiration the orderAspiration to set
+     * @param orderAspiration
+     *            the orderAspiration to set
      */
-    public void setOrderAspiration(Integer orderAspiration) {
+    public void setOrderAspiration(int orderAspiration) {
         this.orderAspiration = orderAspiration;
     }
 }
