@@ -64,7 +64,7 @@
 			<div class="content-section content-source">
 				<ul>
 					<ui:repeat value="#{submit.listDetail}" var="detail"
-						rendered="#{not empty submit.listDetail}" varStatus="myVarStatus">
+						rendered="#{not empty submit.listDetail}">
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-2"></div>
@@ -74,7 +74,7 @@
 											<div
 												style="font-family: Times New Roman, Times, serif; font-size: 20px; text-align: center;">
 												<b><i> Nguyện vọng <h:outputText
-															value="#{myVarStatus.index + 1}" /></i></b>
+															value="#{detail.orderAspiration}" /></i></b>
 											</div>
 											<hr />
 											<br />

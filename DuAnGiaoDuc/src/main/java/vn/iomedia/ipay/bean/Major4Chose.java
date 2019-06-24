@@ -195,21 +195,25 @@ public class Major4Chose implements Serializable {
         listDetail = new ArrayList<>();
         if (student != null && this.major1 != null && this.sub1 != null && this.schChose1 != null) {
             RegistrationDetail detail1 = getRegistrationDetail(student, schChose1, major1, sub1, totalMark1);
+            detail1.setOrderAspiration(1);
             listDetail.add(detail1);
         }
 
         if (student != null && major2 != null && sub2 != null && schChose2 != null) {
             RegistrationDetail detail2 = getRegistrationDetail(student, schChose2, major2, sub2, totalMark2);
+            detail2.setOrderAspiration(2);
             listDetail.add(detail2);
         }
 
         if (student != null && this.major3 != null && this.sub3 != null && this.schChose3 != null) {
             RegistrationDetail detail3 = getRegistrationDetail(student, schChose3, major3, sub3, totalMark3);
+            detail3.setOrderAspiration(3);
             listDetail.add(detail3);
         }
 
         if (student != null && major4 != null && sub4 != null && schChose4 != null) {
             RegistrationDetail detail4 = getRegistrationDetail(student, schChose4, major4, sub4, totalMark4);
+            detail4.setOrderAspiration(4);
             listDetail.add(detail4);
         }
 

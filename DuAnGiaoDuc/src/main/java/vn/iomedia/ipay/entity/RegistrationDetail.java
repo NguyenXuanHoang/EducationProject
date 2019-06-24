@@ -45,6 +45,10 @@ public class RegistrationDetail implements Serializable {
 
     @Column(name = "total_mark")
     private String totalMark;
+    
+    @Column(name = "order_aspiration")
+    private Integer orderAspiration;
+
 
     public int getId() {
         return id;
@@ -120,5 +124,19 @@ public class RegistrationDetail implements Serializable {
      */
     public void setTotalMark(String totalMark) {
         this.totalMark = totalMark;
+    }
+
+    /**
+     * @return the orderAspiration
+     */
+    public Integer getOrderAspiration() {
+        return orderAspiration;
+    }
+
+    /**
+     * @param orderAspiration the orderAspiration to set
+     */
+    public void setOrderAspiration(Integer orderAspiration) {
+        this.orderAspiration = orderAspiration;
     }
 }

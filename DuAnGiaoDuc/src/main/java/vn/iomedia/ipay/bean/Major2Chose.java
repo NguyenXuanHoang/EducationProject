@@ -63,7 +63,7 @@ public class Major2Chose implements Serializable {
             log.debug("get Student,listSchool,schoolSelect from Context in Major2chose page");
             this.student = (Student) ObjectUtils.getObjectByString(CommonContanst.STUDENT);
             this.schoolsSelect = (List<School>) ObjectUtils.getObjectByString(CommonContanst.LIST_SCHOOL);
-            if (!CollectionUtils.isEmpty(schoolsSelect) && schoolsSelect.size()==1) {
+            if (!CollectionUtils.isEmpty(schoolsSelect) && schoolsSelect.size() == 1) {
                 log.debug("Set school ,major default.");
                 this.schChose = schoolsSelect.get(0);
                 this.majors1 = majorService.getListMajorBySchoolId(schoolsSelect.get(0).getId());
@@ -120,12 +120,14 @@ public class Major2Chose implements Serializable {
         if (student != null && this.major1 != null && this.sub1 != null && this.schChose != null) {
             log.debug("Make new registration 1.");
             RegistrationDetail detail1 = getRegistrationDetail(student, schChose, major1, sub1, totalMark1);
+            detail1.setOrderAspiration(1);
             listDetail.add(detail1);
         }
 
         if (student != null && major2 != null && sub2 != null && schChose != null) {
             log.debug("Make new registration 2.");
             RegistrationDetail detail2 = getRegistrationDetail(student, schChose, major2, sub2, totalMark2);
+            detail2.setOrderAspiration(2);
             listDetail.add(detail2);
         }
 

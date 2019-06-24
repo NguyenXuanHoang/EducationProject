@@ -20,7 +20,7 @@ public class RegAdmissionServiceImpl implements RegAdmissionService {
         EntityManager em = SQLConnection.getConnection();
         try {
             List<RegistrationDetail> listDetail = em.createQuery(
-                    "SELECT reg FROM RegistrationDetail reg WHERE reg.student.id = :id AND reg.onlinePaymentDetail IS NOT NULL")
+                    "SELECT reg FROM RegistrationDetail reg WHERE reg.student.id = :id AND reg.onlinePaymentDetail IS NOT NULL ORDER BY reg.orderAspiration ASC")
                     .setParameter("id", studentId).getResultList();
             return listDetail;
         } catch (Exception exp) {
