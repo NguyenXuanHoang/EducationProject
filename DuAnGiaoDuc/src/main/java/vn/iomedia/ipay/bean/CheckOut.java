@@ -1,12 +1,13 @@
 package vn.iomedia.ipay.bean;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -59,7 +60,9 @@ public class CheckOut implements Serializable {
                     money = (int) (CommonContanst.single_school + CommonContanst.single_school_extra);
                 }
             }
-            this.moneyString = String.valueOf(money);
+            NumberFormat nf = NumberFormat.getInstance(Locale.US);
+            
+            this.moneyString = nf.format(money).replace(",", ".");;
         } catch (Exception exp) {
             log.error(exp.getMessage());
         }
