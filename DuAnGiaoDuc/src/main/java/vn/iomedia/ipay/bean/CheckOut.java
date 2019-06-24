@@ -28,7 +28,7 @@ public class CheckOut implements Serializable {
     private List<RegistrationDetail> listDetail;
     private GroupSchool group;
     private String moneyString;
-    private Double money = 0.0;
+    private int money = 0;
     private String payment;
 
     @SuppressWarnings("unchecked")
@@ -42,21 +42,21 @@ public class CheckOut implements Serializable {
          
             if ((group != null) && (group.getNumberChose() == 2)) {
                 log.debug("if group number ==2 ,return money.");
-                money = CommonContanst.single_school + CommonContanst.single_school_extra;
+                money = (int) (CommonContanst.single_school + CommonContanst.single_school_extra);
             } else if ((group != null) && (group.getNumberChose() == 4)) {
                 log.debug("if group number ==4 ,change option.");
                 String schoolName = listDetail.get(0).getSchool().getName().trim();
                 listDetail.forEach(detail -> {
                     if (detail != null && detail.getSchool() != null && detail.getSchool().getName() != null) {
                         if (!detail.getSchool().getName().trim().equals(schoolName)) {
-                            money = CommonContanst.group_school + CommonContanst.group_school_extra;
+                            money = (int) (CommonContanst.group_school + CommonContanst.group_school_extra);
                         }
                     }
                 });
                
                 if (money == 0) {
                     log.debug("after condition,return money.");
-                    money = CommonContanst.single_school + CommonContanst.single_school_extra;
+                    money = (int) (CommonContanst.single_school + CommonContanst.single_school_extra);
                 }
             }
             this.moneyString = String.valueOf(money);
@@ -142,7 +142,7 @@ public class CheckOut implements Serializable {
     /**
      * @return the money
      */
-    public Double getMoney() {
+    public int getMoney() {
         return money;
     }
 
@@ -150,7 +150,7 @@ public class CheckOut implements Serializable {
      * @param money
      *            the money to set
      */
-    public void setMoney(Double money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
