@@ -242,14 +242,8 @@ public class Major4Chose implements Serializable {
             for (int j = i + 1; j < listDetail.size(); j++) {
                 if (listDetail.get(i).getSchool().getName().equals(listDetail.get(j).getSchool().getName())) {
                     total++;
-                    int t = 0;
-                    if (total < 2) {
-                        if (listDetail.get(i).getMajor().getNameMajor().equals(listDetail.get(j).getMajor().getNameMajor()) ) {
-                        	t++;
-                        	if (t >=1) {
-                        		return false;
-                        	}
-                        }
+                    if (total >= 2) {
+                        return false;
                     }
                 }
             }
