@@ -7,6 +7,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
+import com.captcha.botdetect.web.jsf.JsfCaptcha;
+
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.LoginService;
@@ -26,13 +28,15 @@ public class MainPage implements Serializable {
     private String password;
     private String codeInput;
     private String codeOutput;
-
+    private JsfCaptcha captcha; 
+    
     public MainPage() {
         this.codeOutput = StringUtillStudy.randomAlphaNumeric();
     }
 
     public String checkValidate() {
-        if (codeInput.equals(codeOutput)) {
+        boolean isHuman = captcha.validate(codeInput); 
+        if (isHuman) {
             log.debug("Check Code OK,then check idCard and pass");
             Student stu = service.getStudentByIdCardAndPass(idCard, password);
             if (stu != null) {
@@ -105,4 +109,19 @@ public class MainPage implements Serializable {
     public void setCodeOutput(String codeOutput) {
         this.codeOutput = codeOutput;
     }
+
+    /**
+     * @return the captcha
+     */
+    public JsfCaptcha getCaptcha() {
+        return captcha;
+    }
+
+    /**
+     * @param captcha the captcha to set
+     */
+    public void setCaptcha(JsfCaptcha captcha) {
+        this.captcha = captcha;
+    }
+    
 }

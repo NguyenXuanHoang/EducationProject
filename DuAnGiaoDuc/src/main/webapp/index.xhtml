@@ -4,20 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:botDetect="https://captcha.com/java/jsf">
 <h:head>
 	<title>Login</title>
 
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-	<!-- Import jQuery before materialize.js -->
+	Import jQuery before materialize.js
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<!-- Compiled and minified JavaScript -->
+	Compiled and minified JavaScript
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+ -->
 </h:head>
 <h:body styleClass="cyan lighten-4">
 	<div class="valign-wrapper" id="login-page">
@@ -27,31 +28,47 @@
 					<div class="col s6 offset-s3">
 						<div class="card">
 							<div class="card-content">
-								<img class="responsive-img" style="max-width: 64px;" src="https://www.freeiconspng.com/uploads/user-login-icon-29.png"/>
+								<img class="responsive-img" style="max-width: 64px;"
+									src="https://www.freeiconspng.com/uploads/user-login-icon-29.png" />
 								<div class="left-align">
 									<h:form id="login-form">
 										<p:growl autoUpdate="true" />
 										<div class="row">
 											<div class="col s12 input-field">
-												<h:inputText id="idCard" value="#{login.idCard}" required="true" requiredMessage="ID Card is required!" />
-												<h:outputLabel for="idCard" value="Chứng Minh Nhân Dân"/>
+												<h:inputText id="idCard" value="#{login.idCard}"
+													required="true" requiredMessage="ID Card is required!" />
+												<h:outputLabel for="idCard" value="Chứng Minh Nhân Dân" />
 											</div>
 											<div class="col s12 input-field">
-												<h:inputSecret id="pass" value="#{login.password}" required="true" requiredMessage="Password is required!" />
-												<h:outputLabel for="pass" value="Mã Đăng Nhập"/>
+												<h:inputSecret id="pass" value="#{login.password}"
+													required="true" requiredMessage="Password is required!" />
+												<h:outputLabel for="pass" value="Mã Đăng Nhập" />
 											</div>
 											<div class="col s12 input-field">
-												<h:outputLabel value="#{login.codeOutput}"/>
+												<h:outputLabel value="#{login.codeOutput}" />
 											</div>
 											<div class="col s12 input-field">
+												<h:outputLabel for="confirm"
+													value="Retype the characters from the picture:" />
+
+												<botDetect:jsfCaptcha id="exampleCaptcha"
+													userInputID="captchaCode" binding="#{login.captcha}" />
 											</div>
 											<div class="col s12 input-field">
-												<h:inputText id="confirm" value="#{login.codeInput}" required="true" requiredMessage="Please Input Verified Code!" />
-												<h:outputLabel for="confirm" value="Mã Xác Nhận"/>
+												<h:inputText id="confirm" value="#{login.codeInput}" />
+											</div>
+											<div class="col s12 input-field"></div>
+											<div class="col s12 input-field">
+												<!-- <h:inputText id="confirm" value="#{login.codeInput}"
+													required="true"
+													requiredMessage="Please Input Verified Code!" /> -->
+												<!-- <h:outputLabel for="confirm" value="Mã Xác Nhận" /> -->
 											</div>
 											<div class="col s12 input-field">
 												<div class="center-align">
-													<h:commandLink value="Login" action="#{login.checkValidate()}" styleClass="btn btn-large"/>
+													<h:commandLink value="Login"
+														action="#{login.checkValidate()}"
+														styleClass="btn btn-large" />
 												</div>
 											</div>
 										</div>
@@ -62,11 +79,13 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 	<script>
-		$(document).on("ready", function(){
-				$('#login-page').css({'height': window.innerHeight + 'px'});	
+		$(document).on("ready", function() {
+			$('#login-page').css({
+				'height' : window.innerHeight + 'px'
+			});
 		});
 	</script>
 </h:body>

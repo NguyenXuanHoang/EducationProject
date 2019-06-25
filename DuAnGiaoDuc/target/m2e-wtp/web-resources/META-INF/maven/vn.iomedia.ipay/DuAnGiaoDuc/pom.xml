@@ -97,6 +97,19 @@
 			<artifactId>primefaces</artifactId>
 			<version>6.0</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>com.captcha</groupId>
+			<artifactId>botdetect-jsf20</artifactId>
+			<version>4.0.beta3.6</version>
+		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>captcha</id>
+			<name>BotDetect Captcha Repository</name>
+			<url>https://git.captcha.com/botdetect-java-captcha.git/blob_plain/HEAD:/</url>
+		</repository>
+	</repositories>
 </project>
