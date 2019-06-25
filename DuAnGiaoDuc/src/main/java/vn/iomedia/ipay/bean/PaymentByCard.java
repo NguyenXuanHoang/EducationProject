@@ -7,8 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
@@ -25,7 +24,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class PaymentByCard implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
-    private Log log = LogFactory.getLog(PaymentByCard.class);
+    private Logger log = Logger.getLogger(PaymentByCard.class);
     private String mobileCompany;
     private String codeMobile;
     private String seriMobile;

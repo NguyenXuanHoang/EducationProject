@@ -5,8 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.Student;
@@ -20,7 +19,7 @@ import vn.iomedia.ipay.utils.StringUtillStudy;
 public class MainPage implements Serializable {
 
     private static final long serialVersionUID = -5571821043199656622L;
-    private Log log = LogFactory.getLog(MainPage.class);
+    private Logger log = Logger.getLogger(MainPage.class);
     private LoginService service = new LoginServiceImpl();
 
     private String idCard;

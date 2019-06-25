@@ -10,8 +10,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.entity.Majors;
 import vn.iomedia.ipay.service.MajorService;
@@ -21,7 +20,7 @@ import vn.iomedia.ipay.serviceImpl.MajorServiceImpl;
 @FacesConverter(value = "majorConverter")
 public class MajorConverter implements Converter, Serializable {
     private static final long serialVersionUID = 7053414108213420057L;
-    private Log log = LogFactory.getLog(MajorConverter.class);
+    private Logger log = Logger.getLogger(MajorConverter.class);
     private MajorService service = new MajorServiceImpl();
  
 

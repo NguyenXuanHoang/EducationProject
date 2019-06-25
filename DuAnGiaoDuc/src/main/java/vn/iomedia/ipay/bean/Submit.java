@@ -7,8 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
@@ -22,7 +21,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class Submit implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
-    private Log log = LogFactory.getLog(Submit.class);
+    private Logger log = Logger.getLogger(Submit.class);
     private Student student;
     private List<RegistrationDetail> listDetail;
     private String otpInput;

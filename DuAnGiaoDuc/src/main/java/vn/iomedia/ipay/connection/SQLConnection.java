@@ -4,12 +4,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 public class SQLConnection {
 
-    private static Log log = LogFactory.getLog(SQLConnection.class);
+    private static Logger log = Logger.getLogger(SQLConnection.class);
     private static EntityManager em;
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("tuyensinh");
 

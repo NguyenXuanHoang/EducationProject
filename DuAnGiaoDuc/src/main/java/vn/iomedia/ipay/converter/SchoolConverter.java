@@ -10,8 +10,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.entity.School;
 import vn.iomedia.ipay.service.SchoolService;
@@ -22,7 +21,7 @@ import vn.iomedia.ipay.serviceImpl.SchoolServiceImpl;
 public class SchoolConverter implements Converter, Serializable {
 
     private static final long serialVersionUID = 7053414108213420057L;
-    private Log log = LogFactory.getLog(SchoolConverter.class);
+    private Logger log = Logger.getLogger(SchoolConverter.class);
     private SchoolService service = new SchoolServiceImpl();
 
     @Override

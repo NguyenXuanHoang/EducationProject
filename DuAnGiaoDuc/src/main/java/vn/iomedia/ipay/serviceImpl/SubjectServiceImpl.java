@@ -2,8 +2,7 @@ package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.GroupSubjects;
@@ -11,7 +10,7 @@ import vn.iomedia.ipay.service.SubjectService;
 
 public class SubjectServiceImpl implements SubjectService {
 
-    private Log log = LogFactory.getLog(SubjectServiceImpl.class);
+    private Logger log = Logger.getLogger(SubjectServiceImpl.class);
 
     @Override
     public GroupSubjects getSubjectById(int id) {

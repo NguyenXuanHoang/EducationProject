@@ -8,13 +8,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.School;
 import vn.iomedia.ipay.entity.Student;
-import vn.iomedia.ipay.service.RegAdmissionService;
 import vn.iomedia.ipay.service.SchoolService;
 import vn.iomedia.ipay.serviceImpl.SchoolServiceImpl;
 import vn.iomedia.ipay.utils.ObjectUtils;
@@ -24,7 +22,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class RegisterAdmission implements Serializable {
 
     private static final long serialVersionUID = 8556089000353339935L;
-    private Log log = LogFactory.getLog(RegAdmissionService.class);
+    private Logger log = Logger.getLogger(RegisterAdmission.class);
     private SchoolService schoolService = new SchoolServiceImpl();
     private Student student;
 

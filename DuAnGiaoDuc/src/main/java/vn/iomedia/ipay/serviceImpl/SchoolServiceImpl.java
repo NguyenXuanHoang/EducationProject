@@ -5,8 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
@@ -16,7 +15,7 @@ import vn.iomedia.ipay.service.SchoolService;
 
 public class SchoolServiceImpl implements SchoolService {
 
-    private Log log = LogFactory.getLog(SchoolServiceImpl.class);
+    private Logger log = Logger.getLogger(SchoolServiceImpl.class);
 
     @Override
     public List<School> searchListSchoolByName(String name) {

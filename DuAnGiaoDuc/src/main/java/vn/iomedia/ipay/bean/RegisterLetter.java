@@ -7,8 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.RegistrationDetail;
@@ -22,7 +21,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class RegisterLetter implements Serializable {
 
     private static final long serialVersionUID = 8556089000353339935L;
-    private Log log = LogFactory.getLog(RegAdmissionService.class);
+    private Logger log = Logger.getLogger(RegisterLetter.class);
     private RegAdmissionService regService = new RegAdmissionServiceImpl();
     private Student student;
     private List<RegistrationDetail> listDetail;

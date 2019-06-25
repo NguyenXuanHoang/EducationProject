@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.RegistrationDetail;
@@ -13,7 +12,7 @@ import vn.iomedia.ipay.service.RegAdmissionService;
 
 public class RegAdmissionServiceImpl implements RegAdmissionService {
 
-    private Log log = LogFactory.getLog(RegAdmissionServiceImpl.class);
+    private Logger log = Logger.getLogger(RegAdmissionServiceImpl.class);
 
     @SuppressWarnings("unchecked") @Override public List<RegistrationDetail> getListRegistrationByStudentId(
             int studentId) {

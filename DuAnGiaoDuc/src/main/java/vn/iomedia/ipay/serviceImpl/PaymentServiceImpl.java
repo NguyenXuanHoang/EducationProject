@@ -6,10 +6,8 @@ import java.util.Random;
 import javax.persistence.EntityManager;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.OnlinePaymentDetail;
 import vn.iomedia.ipay.entity.RegistrationDetail;
@@ -17,11 +15,10 @@ import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.PaymentService;
 import vn.iomedia.ipay.service.RegAdmissionService;
 import vn.iomedia.ipay.service.StudentService;
-import vn.iomedia.ipay.utils.ObjectUtils;
 
 public class PaymentServiceImpl implements PaymentService {
 
-    private Log log = LogFactory.getLog(PaymentServiceImpl.class);
+    private Logger log = Logger.getLogger(PaymentServiceImpl.class);
 
     private RegAdmissionService regService = new RegAdmissionServiceImpl();
     private StudentService stuService = new StudentServiceImpl();

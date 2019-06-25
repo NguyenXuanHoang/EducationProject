@@ -10,14 +10,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.entity.Student;
 
 public class SendEmail {
 
-    private static Log log = LogFactory.getLog(SendEmail.class);
+    private static Logger log = Logger.getLogger(SendEmail.class);
 
     public static void startSendEmail(Student student, String otp) {
         Thread t = new Thread(() -> {

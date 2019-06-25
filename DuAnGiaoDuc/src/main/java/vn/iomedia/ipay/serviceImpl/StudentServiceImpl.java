@@ -2,8 +2,7 @@ package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.connection.SQLConnection;
@@ -14,7 +13,7 @@ import vn.iomedia.ipay.utils.StringUtillStudy;
 
 public class StudentServiceImpl implements StudentService {
 
-    private Log log = LogFactory.getLog(StudentServiceImpl.class);
+    private Logger log = Logger.getLogger(StudentServiceImpl.class);
 
     @SuppressWarnings("unused")
     @Override

@@ -6,8 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
@@ -22,7 +21,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class ChangePass implements Serializable {
 
     private static final long serialVersionUID = 8765845877376608394L;
-    private Log log = LogFactory.getLog(ChangePass.class);
+    private Logger log = Logger.getLogger(ChangePass.class);
 
     private String oldPass;
     private String newPass;

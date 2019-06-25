@@ -7,8 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.entity.RegistrationDetail;
@@ -22,7 +21,7 @@ import vn.iomedia.ipay.utils.ObjectUtils;
 public class CompletePage implements Serializable {
 
     private static final long serialVersionUID = -39199585621294241L;
-    private Log log = LogFactory.getLog(CompletePage.class);
+    private Logger log = Logger.getLogger(CompletePage.class);
     private Student student;
     private List<RegistrationDetail> listDetail;
 

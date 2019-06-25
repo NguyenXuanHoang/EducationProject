@@ -9,8 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
@@ -33,7 +32,7 @@ import vn.iomedia.ipay.utils.StringUtillStudy;
 public class Major4Chose implements Serializable {
 
     private static final long serialVersionUID = -4057556628266352443L;
-    private Log log = LogFactory.getLog(Major4Chose.class);
+    private Logger log = Logger.getLogger(Major4Chose.class);
 
     private Student student;
     private School school;
@@ -264,21 +263,6 @@ public class Major4Chose implements Serializable {
         detail.setSchool(sch);
         detail.setTotalMark(totalMark);
         return detail;
-    }
-
-    /**
-     * @return the log
-     */
-    public Log getLog() {
-        return log;
-    }
-
-    /**
-     * @param log
-     *            the log to set
-     */
-    public void setLog(Log log) {
-        this.log = log;
     }
 
     /**

@@ -2,8 +2,7 @@ package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.Student;
@@ -11,7 +10,7 @@ import vn.iomedia.ipay.service.LoginService;
 
 public class LoginServiceImpl implements LoginService {
 
-    private Log log = LogFactory.getLog(LoginServiceImpl.class);
+    private Logger log = Logger.getLogger(LoginServiceImpl.class);
 
     @Override
     public Student getStudentByIdCardAndPass(String idCard, String password) {

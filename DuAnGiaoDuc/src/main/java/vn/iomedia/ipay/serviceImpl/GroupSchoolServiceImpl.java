@@ -2,8 +2,7 @@ package vn.iomedia.ipay.serviceImpl;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.GroupSchool;
@@ -11,7 +10,7 @@ import vn.iomedia.ipay.service.GroupSchoolService;
 
 public class GroupSchoolServiceImpl implements GroupSchoolService {
 
-    private Log log = LogFactory.getLog(SchoolServiceImpl.class);
+    private Logger log = Logger.getLogger(GroupSchoolServiceImpl.class);
 
     @Override
     public GroupSchool getGroupSchoolBySchoolId(int schoolId) {

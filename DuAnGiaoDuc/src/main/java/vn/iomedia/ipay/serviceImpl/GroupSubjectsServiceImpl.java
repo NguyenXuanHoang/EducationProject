@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.GroupSubjects;
@@ -13,7 +12,7 @@ import vn.iomedia.ipay.service.GroupSubjectService;
 
 public class GroupSubjectsServiceImpl implements GroupSubjectService {
 
-    private Log log = LogFactory.getLog(GroupSubjectsServiceImpl.class);
+    private Logger log = Logger.getLogger(GroupSubjectsServiceImpl.class);
 
     @SuppressWarnings("unchecked")
     @Override

@@ -5,8 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import vn.iomedia.ipay.connection.SQLConnection;
 import vn.iomedia.ipay.entity.Majors;
@@ -14,7 +13,7 @@ import vn.iomedia.ipay.service.MajorService;
 
 public class MajorServiceImpl implements MajorService {
 
-    private Log log = LogFactory.getLog(MajorServiceImpl.class);
+    private Logger log = Logger.getLogger(MajorServiceImpl.class);
 
     @Override
     public Majors getMajorById(int id) {
