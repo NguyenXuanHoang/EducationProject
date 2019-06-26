@@ -33,14 +33,14 @@ public class InsertStudent {
         em.persist(ob);
 
         Student st = new Student();
-        st.setLastName("Giao");
-        st.setFirstName("Nguyen Hoan");
+        st.setLastName("Kim");
+        st.setFirstName("Nguyen Hoang Thien");
         st.setPassword("1");
         st.setIdCard("1");
         st.setIdNumber("ABC213");
         st.setAddress("viet nam");
         st.setDob("30041995");
-        st.setEmail("hoangiao.se@gmail.com");
+        st.setEmail("hoangnx1503@gmail.com");
         st.setNumberRegis(2);
         st.setPriorityArea(area);
         st.setPriorityObject(ob);
