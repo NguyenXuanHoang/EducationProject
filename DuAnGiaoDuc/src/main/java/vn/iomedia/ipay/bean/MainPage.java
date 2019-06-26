@@ -14,7 +14,6 @@ import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.LoginService;
 import vn.iomedia.ipay.serviceImpl.LoginServiceImpl;
 import vn.iomedia.ipay.utils.ObjectUtils;
-import vn.iomedia.ipay.utils.StringUtillStudy;
 
 @ManagedBean(name = "login")
 @ViewScoped
@@ -27,12 +26,7 @@ public class MainPage implements Serializable {
     private String idCard;
     private String password;
     private String codeInput;
-    private String codeOutput;
     private JsfCaptcha captcha; 
-    
-    public MainPage() {
-        this.codeOutput = StringUtillStudy.randomAlphaNumeric();
-    }
 
     public String checkValidate() {
         boolean isHuman = captcha.validate(codeInput); 
@@ -46,7 +40,6 @@ public class MainPage implements Serializable {
             }
         }
         log.debug("Can not validate by IdCard,return.");
-        this.codeOutput = StringUtillStudy.randomAlphaNumeric();
         return CommonContanst.FAIL + "?faces-redirect=true";
     }
 
@@ -93,21 +86,6 @@ public class MainPage implements Serializable {
      */
     public void setCodeInput(String codeInput) {
         this.codeInput = codeInput;
-    }
-
-    /**
-     * @return the codeOutput
-     */
-    public String getCodeOutput() {
-        return codeOutput;
-    }
-
-    /**
-     * @param codeOutput
-     *            the codeOutput to set
-     */
-    public void setCodeOutput(String codeOutput) {
-        this.codeOutput = codeOutput;
     }
 
     /**

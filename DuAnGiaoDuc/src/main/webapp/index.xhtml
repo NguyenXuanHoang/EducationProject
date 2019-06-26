@@ -10,15 +10,15 @@
 	<title>Login</title>
 
 	<!-- Compiled and minified CSS -->
-	<!-- <link rel="stylesheet"
+	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-	Import jQuery before materialize.js
+	<!-- Import jQuery before materialize.js -->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	Compiled and minified JavaScript
+	<!-- 	Compiled and minified JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
- -->
+
 </h:head>
 <h:body styleClass="cyan lighten-4">
 	<div class="valign-wrapper" id="login-page">
@@ -42,28 +42,23 @@
 											<div class="col s12 input-field">
 												<h:inputSecret id="pass" value="#{login.password}"
 													required="true" requiredMessage="Password is required!" />
+											</div>
+											<div class="col s12 input-field">
 												<h:outputLabel for="pass" value="Mã Đăng Nhập" />
 											</div>
 											<div class="col s12 input-field">
-												<h:outputLabel value="#{login.codeOutput}" />
-											</div>
-											<div class="col s12 input-field">
-												<h:outputLabel for="confirm"
-													value="Retype the characters from the picture:" />
-
 												<botDetect:jsfCaptcha id="exampleCaptcha"
 													userInputID="captchaCode" binding="#{login.captcha}" />
 											</div>
 											<div class="col s12 input-field">
-												<h:inputText id="confirm" value="#{login.codeInput}" />
+												<h:outputLabel for="captchaCode" value="Mã Xác Nhận" />
+											</div>
+											<div class="col s12 input-field">
+												<h:inputText id="captchaCode" value="#{login.codeInput}"
+													requiredMessage="Please Input Verified Code!" />
 											</div>
 											<div class="col s12 input-field"></div>
-											<div class="col s12 input-field">
-												<!-- <h:inputText id="confirm" value="#{login.codeInput}"
-													required="true"
-													requiredMessage="Please Input Verified Code!" /> -->
-												<!-- <h:outputLabel for="confirm" value="Mã Xác Nhận" /> -->
-											</div>
+
 											<div class="col s12 input-field">
 												<div class="center-align">
 													<h:commandLink value="Login"
