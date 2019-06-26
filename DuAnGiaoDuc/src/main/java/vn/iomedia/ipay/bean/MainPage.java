@@ -26,11 +26,10 @@ public class MainPage implements Serializable {
     private String idCard;
     private String password;
     private String codeInput;
-    private JsfCaptcha captcha; 
+    private JsfCaptcha captcha;
 
     public String checkValidate() {
-        boolean isHuman = captcha.validate(codeInput); 
-        if (isHuman) {
+        if (captcha.validate(codeInput)) {
             log.debug("Check Code OK,then check idCard and pass");
             Student stu = service.getStudentByIdCardAndPass(idCard, password);
             if (stu != null) {
@@ -96,10 +95,11 @@ public class MainPage implements Serializable {
     }
 
     /**
-     * @param captcha the captcha to set
+     * @param captcha
+     *            the captcha to set
      */
     public void setCaptcha(JsfCaptcha captcha) {
         this.captcha = captcha;
     }
-    
+
 }

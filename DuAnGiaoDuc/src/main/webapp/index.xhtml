@@ -42,8 +42,6 @@
 											<div class="col s12 input-field">
 												<h:inputSecret id="pass" value="#{login.password}"
 													required="true" requiredMessage="Password is required!" />
-											</div>
-											<div class="col s12 input-field">
 												<h:outputLabel for="pass" value="Mã Đăng Nhập" />
 											</div>
 											<div class="col s12 input-field">
@@ -81,6 +79,12 @@
 			$('#login-page').css({
 				'height' : window.innerHeight + 'px'
 			});
+		});
+		$(document).ready(function() {
+			$("a[title ~= 'BotDetect']").removeAttr("style");
+			$("a[title ~= 'BotDetect']").removeAttr("href");
+			$("a[title ~= 'BotDetect']").css('visibility', 'hidden');
+
 		});
 	</script>
 </h:body>
