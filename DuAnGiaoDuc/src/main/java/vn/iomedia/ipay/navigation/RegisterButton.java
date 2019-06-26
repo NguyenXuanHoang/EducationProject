@@ -3,7 +3,7 @@ package vn.iomedia.ipay.navigation;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
+import vn.iomedia.ipay.contanst.CommonContanst;
 
 @ManagedBean(name = "registerButton")
 @SessionScoped

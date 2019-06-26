@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.captcha.botdetect.web.jsf.JsfCaptcha;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
+import vn.iomedia.ipay.contanst.CommonContanst;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.LoginService;
 import vn.iomedia.ipay.serviceImpl.LoginServiceImpl;

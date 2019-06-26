@@ -4,8 +4,8 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
 import vn.iomedia.ipay.connection.SQLConnection;
+import vn.iomedia.ipay.contanst.CommonContanst;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.StudentService;
 import vn.iomedia.ipay.utils.ObjectUtils;

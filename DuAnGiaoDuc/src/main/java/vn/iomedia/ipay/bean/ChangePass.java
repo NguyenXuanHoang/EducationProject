@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
+import vn.iomedia.ipay.contanst.CommonContanst;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.StudentService;
 import vn.iomedia.ipay.serviceImpl.StudentServiceImpl;

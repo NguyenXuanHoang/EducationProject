@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
-import vn.iomedia.ipay.Contanst.CommonContanst;
+import vn.iomedia.ipay.contanst.CommonContanst;
 import vn.iomedia.ipay.entity.School;
 import vn.iomedia.ipay.entity.Student;
 import vn.iomedia.ipay.service.SchoolService;
